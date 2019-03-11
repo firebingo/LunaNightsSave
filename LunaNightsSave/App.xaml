@@ -1,0 +1,25 @@
+﻿<Application x:Class="LunaNightsSave.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:LunaNightsSave"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             StartupUri="Windows/MainWindow.xaml">
+    <Application.Resources>
+        <SolidColorBrush x:Key="WindowBackgroundColor" Color="#EE282828"/>
+        <SolidColorBrush x:Key="TextForegroundColor" Color="#FFFCFCFC"/>
+        <SolidColorBrush x:Key="TextSubForegroundColor" Color="#FFC0C0C0"/>
+        <SolidColorBrush x:Key="TextBackgroundColor" Color="#FF505050"/>
+        <SolidColorBrush x:Key="TextBorderColor" Color="#CF404040"/>
+        <SolidColorBrush x:Key="TextBrightBorderColor" Color="#CF606060"/>
+        <SolidColorBrush x:Key="BarBackgroundColor" Color="#FF404040"/>
+        <SolidColorBrush x:Key="TopBarOtherHover" Color="#CF393939"/>
+        <SolidColorBrush x:Key="TopBarCloseHover" Color="#CFCC0000"/>
+        <SolidColorBrush x:Key="TopBarBorderActivated" Color="#DF909090"/>
+        <SolidColorBrush x:Key="TopBarBorderDeactivated" Color="#CF606060"/>
+        <SolidColorBrush x:Key="GlyphBrush" Color="#444" />
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <local:NullVisibilityConverter x:Key="NullToVisibilityConverter"/>
+        <sys:Double x:Key="BaseFontSize">12</sys:Double>
+        <sys:Double x:Key="SubFontSize">8</sys:Double>
+    </Application.Resources>
+</Application>
