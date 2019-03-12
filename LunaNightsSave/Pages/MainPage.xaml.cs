@@ -24,14 +24,6 @@ namespace LunaNightsSave.Pages
 		public MainPage()
 		{
 			InitializeComponent();
-
-			//var l = File.ReadAllLines(@"C:\Users\matth\AppData\Local\touhou_luna_nights\game0.sav");
-			//var newL = new List<string>();
-			//foreach (var line in l)
-			//{
-			//	newL.Add(Encoding.UTF8.GetString(Convert.FromBase64String(line)));
-			//}
-			//newL.Dump();
 		}
 
 		private void HorizontalScrollMouseWheel(object sender, MouseWheelEventArgs e)

@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LunaNightsSave", "LunaNightsSave\LunaNightsSave.csproj", "{3BF2C486-36C7-4B8B-AFF6-8FB281194EB8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NightsSaveReader", "NightsSaveReader\NightsSaveReader.csproj", "{BB00722D-F900-4F7E-85F8-EB98F07F0774}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{3BF2C486-36C7-4B8B-AFF6-8FB281194EB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BF2C486-36C7-4B8B-AFF6-8FB281194EB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BF2C486-36C7-4B8B-AFF6-8FB281194EB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB00722D-F900-4F7E-85F8-EB98F07F0774}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB00722D-F900-4F7E-85F8-EB98F07F0774}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB00722D-F900-4F7E-85F8-EB98F07F0774}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB00722D-F900-4F7E-85F8-EB98F07F0774}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -117,6 +117,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\NightsSaveReader\NightsSaveReader.csproj">
+      <Project>{bb00722d-f900-4f7e-85f8-eb98f07f0774}</Project>
+      <Name>NightsSaveReader</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

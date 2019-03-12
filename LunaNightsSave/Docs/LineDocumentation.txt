@@ -118,7 +118,7 @@ White gems
 What powerups you have. 1 = Slide Knife, 2 = Double Jump, 3 = Grip Knife, 4 = Screw KnifeHigher numbers include all previous powers as well
 Gold
 Count of skill cards in inventory, setting this to a number when you dont have the cards crashes
-Comma seperated list. Tied to trash bins somehow. Adding more than 7 in first save soft locks.
+Comma seperated list. Completed trash cans.
 ? This block may be tied to skills in inventory?
 ?
 ?
