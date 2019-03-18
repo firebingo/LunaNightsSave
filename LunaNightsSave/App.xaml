@@ -17,6 +17,9 @@
         <SolidColorBrush x:Key="TopBarBorderActivated" Color="#DF909090"/>
         <SolidColorBrush x:Key="TopBarBorderDeactivated" Color="#CF606060"/>
         <SolidColorBrush x:Key="GlyphBrush" Color="#444" />
+        <SolidColorBrush x:Key="BingoFillBrush" Color="#A0404040"/>
+        <SolidColorBrush x:Key="BingoStrokeBrush" Color="#80202020"/>
+        <SolidColorBrush x:Key="BingoStrokeHoverBrush" Color="#A0909090"/>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
         <local:NullVisibilityConverter x:Key="NullToVisibilityConverter"/>
         <sys:Double x:Key="BaseFontSize">12</sys:Double>

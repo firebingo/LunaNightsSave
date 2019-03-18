@@ -1,0 +1,22 @@
+{
+	"AutoSave": false,
+	"WindowPlacement": {
+		"length": 44,
+		"flags": 0,
+		"showCmd": 1,
+		"minPosition": {
+			"X": -1,
+			"Y": -1
+		},
+		"maxPosition": {
+			"X": -1,
+			"Y": -1
+		},
+		"normalPosition": {
+			"Left": 415,
+			"Top": 438,
+			"Right": 1695,
+			"Bottom": 1158
+		}
+	}
+}

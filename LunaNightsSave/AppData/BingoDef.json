@@ -1,0 +1,78 @@
+{
+	"Tiles": [
+		[
+			{
+				"Type": "Clock",
+				"Stage": 5,
+				"Data":  -1
+			},
+			{
+				"Type": "Knife",
+				"Stage": 5,
+				"Data": -1
+			},
+			{
+				"Type": "Hp",
+				"Stage": 5,
+				"Data": -1
+			},
+			{
+				"Type": "Mp",
+				"Stage": 5,
+				"Data": -1
+			},
+			{
+				"Type": "Trash",
+				"Stage": 5,
+				"Data": 1
+			},
+			{
+				"Type": "Trash",
+				"Stage": 5,
+				"Data": 1
+			},
+			{
+				"Type": "Trash",
+				"Stage": 5,
+				"Data": 1
+			}
+		],
+		[
+			{
+				"Type": "Clock",
+				"Stage": 6,
+				"Data": -1
+			},
+			{
+				"Type": "Knife",
+				"Stage": 6,
+				"Data": -1
+			},
+			{
+				"Type": "Hp",
+				"Stage": 6,
+				"Data": -1
+			},
+			{
+				"Type": "Mp",
+				"Stage": 6,
+				"Data": -1
+			},
+			{
+				"Type": "Trash",
+				"Stage": 6,
+				"Data": 1
+			},
+			{
+				"Type": "Trash",
+				"Stage": 6,
+				"Data": 1
+			},
+			{
+				"Type": "Trash",
+				"Stage": 6,
+				"Data": 1
+			}
+		]
+	]
+}

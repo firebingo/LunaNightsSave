@@ -72,11 +72,15 @@
     </Compile>
     <Compile Include="Function\Config.cs" />
     <Compile Include="Helpers\ErrorTracker.cs" />
+    <Compile Include="Helpers\GridHelper.cs" />
     <Compile Include="Helpers\WindowPlacementHandler.cs" />
     <Compile Include="Models\ConfigModel.cs" />
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\BingoGridModels.cs" />
+    <Compile Include="ViewModels\MainPageModel.cs" />
+    <Compile Include="ViewModels\SaveInfoViewModel.cs" />
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -108,6 +112,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="AppData\BingoDef.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\Config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -122,6 +132,9 @@
       <Project>{bb00722d-f900-4f7e-85f8-eb98f07f0774}</Project>
       <Name>NightsSaveReader</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="AppData\Images\BingoDefault.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

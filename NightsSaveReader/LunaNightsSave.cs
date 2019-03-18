@@ -28,6 +28,22 @@ namespace NightsSaveReader
 		Credits = 11
 	}
 
+	public enum StageDisplay
+	{
+		NewGame = -4,
+		Opening = -3,
+		Title = -2,
+		SaveSelect = -1,
+		BlackScreen = 0,
+		Stage1 = 1,
+		Stage2 = 2,
+		Stage3 = 3,
+		Stage4 = 4,
+		Stage5 = 5,
+		StageExtra = 6,
+		Credits = 7
+	}
+
 	//TODO: Get the actual numbers for these
 	public enum TrashCans
 	{
@@ -107,7 +123,7 @@ namespace NightsSaveReader
 		public int Exp = 0;
 		public int Gold = 0;
 		public int Amethyst = 0;
-		public int Crystal = 0;
+		public int Turquoise = 0;
 		public int Topaz = 0;
 		public int Ruby = 0;
 		public int Sapphire = 0;

@@ -47,8 +47,10 @@ namespace LunaNightsSave.Windows
 			InitializeComponent();
 
 			_visiblePage = VisiblePage.MainPage;
-			_pages = new List<Control>();
-			_pages.Add(mainPage);
+			_pages = new List<Control>
+			{
+				mainPage
+			};
 		}
 
 		protected override void OnSourceInitialized(EventArgs e)

@@ -6,6 +6,9 @@
 		public static event OnUpdate UpdateError;
 
 		private static string _currentError;
+		/// <summary>
+		/// Call this from a SynchronizationContext preferably
+		/// </summary>
 		public static string CurrentError
 		{
 			get

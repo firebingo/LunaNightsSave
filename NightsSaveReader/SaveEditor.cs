@@ -11,6 +11,9 @@ namespace NightsSaveReader
 	public class SaveEditor
 	{
 		private static readonly int _lineCount = 1000;
+		public static readonly string DateFormat = "HH:mm dd/MM/yyyy";
+		public static readonly int BingoWidth = 9;
+		public static readonly int BingoHeight = 7;
 		public LunaNightsSave Save;
 		private string _currentPath;
 
@@ -91,7 +94,7 @@ namespace NightsSaveReader
 			int.TryParse(lines[106], out Save.Exp);
 
 			//File save date
-			Save.SaveDate = DateTime.ParseExact(lines[107], "HH:mm dd/MM/yyyy", CultureInfo.CurrentCulture);
+			Save.SaveDate = DateTime.ParseExact(lines[107], DateFormat, CultureInfo.CurrentCulture);
 
 			//Count of upgrades
 			int.TryParse(lines[108], out Save.KnifeUpgrades);
@@ -99,7 +102,7 @@ namespace NightsSaveReader
 
 			//Gems
 			int.TryParse(lines[110], out Save.Amethyst);
-			int.TryParse(lines[111], out Save.Crystal);
+			int.TryParse(lines[111], out Save.Turquoise);
 			int.TryParse(lines[112], out Save.Topaz);
 			int.TryParse(lines[113], out Save.Ruby);
 			int.TryParse(lines[114], out Save.Sapphire);
@@ -188,7 +191,7 @@ namespace NightsSaveReader
 			lines[106] = Save.Exp.ToString();
 
 			//File save date
-			lines[107] = Save.SaveDate.ToString("HH:mm dd/MM/yyyy", CultureInfo.CurrentCulture);
+			lines[107] = Save.SaveDate.ToString(DateFormat, CultureInfo.CurrentCulture);
 
 			//Count of upgrades
 			lines[108] = Save.KnifeUpgrades.ToString();
@@ -196,7 +199,7 @@ namespace NightsSaveReader
 
 			//Gems
 			lines[110] = Save.Amethyst.ToString();
-			lines[111] = Save.Crystal.ToString();
+			lines[111] = Save.Turquoise.ToString();
 			lines[112] = Save.Topaz.ToString();
 			lines[113] = Save.Ruby.ToString();
 			lines[114] = Save.Sapphire.ToString();
