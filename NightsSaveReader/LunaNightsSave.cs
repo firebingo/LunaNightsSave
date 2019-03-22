@@ -120,7 +120,7 @@ namespace NightsSaveReader
 		public bool HasGreenKey = false;
 		public bool HasBlueKey = false;
 		public bool HasPurpleKey = false;
-		public int Exp = 0;
+		public double Exp = 0;
 		public int Gold = 0;
 		public int Amethyst = 0;
 		public int Turquoise = 0;

@@ -6,10 +6,12 @@ namespace LunaNightsSave.Models
 	{
 		public WINDOWPLACEMENT WindowPlacement;
 		public bool AutoSave;
+		public int AutoSaveIntervalMs;
 
 		public ConfigModel()
 		{
 			AutoSave = false;
+			AutoSaveIntervalMs = 5000;
 		}
 	}
 }

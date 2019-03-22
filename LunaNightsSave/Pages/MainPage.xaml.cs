@@ -1,4 +1,5 @@
-﻿using LunaNightsSave.Helpers;
+﻿using LunaNightsSave.Function;
+using LunaNightsSave.Helpers;
 using LunaNightsSave.ViewModels;
 using NightsSaveReader;
 using System;
@@ -33,6 +34,7 @@ namespace LunaNightsSave.Pages
 		private readonly SolidColorBrush _save1Color = Brushes.Green;
 		private string _save2Path = string.Empty;
 		private readonly SolidColorBrush _save2Color = Brushes.Blue;
+		private System.Timers.Timer _autoSaveTimer;
 
 		public MainPageModel PageModel;
 
@@ -104,6 +106,14 @@ namespace LunaNightsSave.Pages
 				}
 				ErrorTracker.CurrentError = string.Empty;
 			}, null);
+
+			_autoSaveTimer = new System.Timers.Timer()
+			{
+				AutoReset = false,
+				Interval = Config.Instance.ConfigObject.AutoSaveIntervalMs
+			};
+			_autoSaveTimer.Elapsed += AutoSaveTimerElapsed;
+			_autoSaveTimer.Start();
 		}
 
 		private void SaveSelectChanged(object sender, SelectionChangedEventArgs e)
@@ -185,7 +195,6 @@ namespace LunaNightsSave.Pages
 				{
 					for (int y = 0; y < SaveEditor.BingoHeight; ++y)
 					{
-						
 						BingoTileData tileData = new BingoTileData();
 						if (defs.Rank > x && defs.GetLength(x) > y)
 						{
@@ -324,14 +333,33 @@ namespace LunaNightsSave.Pages
 					}
 					break;
 			}
-			Task.Run(SyncViewModelToSave);
+			Task.Run(() => SyncViewModelToSave(false));
 		}
 
-		private async Task SyncViewModelToSave()
+		private void AutoSaveTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
 		{
-			await PageModel.SaveInfo.SyncToSave(ref _saveEditor.Save);
-			if (PageModel.AutoSave)
-				await _saveEditor.WriteSave();
+			if(PageModel != null && PageModel.SaveInfo.SaveLoaded && Config.Instance.ConfigObject.AutoSave)
+				Task.Run(() => SyncViewModelToSave(true));
+			_autoSaveTimer.Start();
+		}
+
+		private async Task SyncViewModelToSave(bool writeSave)
+		{
+			try
+			{
+				await PageModel.SaveInfo.SyncToSave(ref _saveEditor.Save);
+				if (writeSave)
+					await _saveEditor.WriteSave();
+			}
+			catch(Exception ex)
+			{
+				_syncContext.Post((s) => ErrorTracker.CurrentError = ex.Message, null);
+			}
+		}
+
+		private void SaveButtonClicked(object sender, RoutedEventArgs e)
+		{
+			Task.Run(() => SyncViewModelToSave(true));
 		}
 	}
 }

@@ -104,7 +104,7 @@ What stage you are on 0 - New Game, 1 - Remilla OP, 2 - Title Screen, 3 - Save S
 Maybe Grounded or not
 Count of HP upgrades, Need a heal to restore to over 300 hp/mp
 Count of MP upgrades
-EXP
+EXP (double)
 Date of save (local)
 Count of knife upgrades
 Count of clock upgrades

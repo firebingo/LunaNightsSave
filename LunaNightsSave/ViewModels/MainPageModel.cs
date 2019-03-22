@@ -28,7 +28,7 @@ namespace LunaNightsSave.ViewModels
 	public class MainPageModel : INotifyPropertyChanged
 	{
 		private readonly SynchronizationContext _syncContext;
-		public SaveInfoViewModel SaveInfo;
+		public SaveInfoViewModel SaveInfo { get; set; }
 
 		private ObservableCollection<SaveSelectionModel> _saves;
 		public ObservableCollection<SaveSelectionModel> Saves
@@ -59,6 +59,7 @@ namespace LunaNightsSave.ViewModels
 			set
 			{
 				_autoSave = value;
+				Config.Instance.ConfigObject.AutoSave = _autoSave;
 				NotifyPropertyChanged("AutoSave");
 			}
 		}

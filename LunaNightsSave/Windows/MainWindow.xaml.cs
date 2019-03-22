@@ -1,4 +1,5 @@
-﻿using LunaNightsSave.Helpers;
+﻿using LunaNightsSave.Function;
+using LunaNightsSave.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -79,6 +80,7 @@ namespace LunaNightsSave.Windows
 		private void WindowClosing(object sender, CancelEventArgs e)
 		{
 			WindowPlacementHandler.GetPlacement(new WindowInteropHelper(this).Handle);
+			Config.Instance.SaveConfig();
 		}
 
 		private void WindowSizeChanged(object sender, SizeChangedEventArgs e)

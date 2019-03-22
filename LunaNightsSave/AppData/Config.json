@@ -1,5 +1,6 @@
 {
 	"AutoSave": false,
+	"AutoSaveIntervalMs": 5000,
 	"WindowPlacement": {
 		"length": 44,
 		"flags": 0,

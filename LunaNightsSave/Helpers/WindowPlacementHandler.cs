@@ -85,7 +85,6 @@ namespace LunaNightsSave.Helpers
 			GetWindowPlacement(windowHandle, out placement);
 
 			Config.Instance.ConfigObject.WindowPlacement = placement;
-			Config.Instance.SaveConfig();
 		}
 	}
 }

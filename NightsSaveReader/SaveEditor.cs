@@ -17,6 +17,12 @@ namespace NightsSaveReader
 		public LunaNightsSave Save;
 		private string _currentPath;
 
+		/// <summary>
+		/// Loads a save from a file
+		/// </summary>
+		/// <param name="path">The path to the save file</param>
+		/// <param name="createIfNotExist">If true will create a new save with the give path/name if it does not already exist</param>
+		/// <returns></returns>
 		public async Task LoadSave(string path, bool createIfNotExist)
 		{
 			Save = new LunaNightsSave();
@@ -34,6 +40,8 @@ namespace NightsSaveReader
 
 			if (lines.Count != _lineCount)
 				throw new Exception("Save file may be corrupted");
+
+			//TODO: Mp and Hp upgrades need inventory definitions
 
 			//Inventory knife upgrades
 			if (lines[60] == "60")
@@ -91,7 +99,7 @@ namespace NightsSaveReader
 			int.TryParse(lines[105], out Save.MpUpgrades);
 
 			//xp
-			int.TryParse(lines[106], out Save.Exp);
+			double.TryParse(lines[106], out Save.Exp);
 
 			//File save date
 			Save.SaveDate = DateTime.ParseExact(lines[107], DateFormat, CultureInfo.CurrentCulture);
@@ -128,7 +136,12 @@ namespace NightsSaveReader
 			int.TryParse(lines[135], out Save.KnifeUpgradesBought);
 		}
 
-		public async Task WriteSave()
+		/// <summary>
+		/// Writes the save out to the file
+		/// </summary>
+		/// <param name="useNowDate">If true saves the file's date as the current system time and not the time in the save</param>
+		/// <returns></returns>
+		public async Task WriteSave(bool useNowDate = false)
 		{
 			var lines = await LoadLines(_currentPath);
 
@@ -191,7 +204,10 @@ namespace NightsSaveReader
 			lines[106] = Save.Exp.ToString();
 
 			//File save date
-			lines[107] = Save.SaveDate.ToString(DateFormat, CultureInfo.CurrentCulture);
+			if(useNowDate)
+				lines[107] = DateTime.Now.ToString(DateFormat, CultureInfo.CurrentCulture);
+			else
+				lines[107] = Save.SaveDate.ToString(DateFormat, CultureInfo.CurrentCulture);
 
 			//Count of upgrades
 			lines[108] = Save.KnifeUpgrades.ToString();
@@ -204,7 +220,7 @@ namespace NightsSaveReader
 			lines[113] = Save.Ruby.ToString();
 			lines[114] = Save.Sapphire.ToString();
 			lines[115] = Save.Emerald.ToString();
-			lines[115] = Save.Diamond.ToString();
+			lines[116] = Save.Diamond.ToString();
 
 			//Upgrade level
 			lines[117] = ((int)Save.UpgradeLevel).ToString();
@@ -224,6 +240,11 @@ namespace NightsSaveReader
 			await WriteLines(_currentPath, lines.ToArray());
 		}
 
+		/// <summary>
+		/// Will create a new save at the given path
+		/// </summary>
+		/// <param name="path">the path to create the save at</param>
+		/// <returns></returns>
 		public async Task CreateSave(string path)
 		{
 			_currentPath = path;
@@ -268,7 +289,7 @@ namespace NightsSaveReader
 			{
 				for (var i = 0; i < _lineCount; ++i)
 				{
-					await writer.WriteLineAsync(lines[i]);
+					await writer.WriteLineAsync(Convert.ToBase64String(Encoding.UTF8.GetBytes(lines[i]), Base64FormattingOptions.None));
 				}
 			}
 		}
