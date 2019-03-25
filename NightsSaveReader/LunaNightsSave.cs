@@ -47,21 +47,39 @@ namespace NightsSaveReader
 	//TODO: Get the actual numbers for these
 	public enum TrashCans
 	{
-		S1_1 = 0,
-		S1_2,
-		S1_3,
-		S2_1,
-		S2_2,
-		S2_3,
-		S3_1,
-		S3_2,
-		S3_3,
-		S4_1,
-		S4_2,
-		S4_3,
-		S5_1,
-		S5_2,
-		S5_3
+		S1_1 = 100221,
+		S1_2 = 100220,
+		S1_3 = 100219,
+		S2_1 = 100273,
+		S2_2 = 100272,
+		S2_3 = 100275,
+		S3_1 = 100468,
+		S3_2 = 100594,
+		S3_3 = 100472,
+		S4_1 = 100619,
+		S4_2 = 100782,
+		S4_3 = 100684,
+		S5_1 = 100818,
+		S5_2 = 100816,
+		S5_3 = 100814
+	}
+
+	public enum HpUpgrades
+	{
+		S1 = 1,
+		S2 = 2,
+		S3 = 3,
+		S4 = 4,
+		S5 = 5
+	}
+
+	public enum MpUpgrades
+	{
+		S1 = 1,
+		S2 = 2,
+		S3 = 3,
+		S4 = 4,
+		S5 = 5
 	}
 
 	public enum KnifeUpgrades
@@ -82,44 +100,48 @@ namespace NightsSaveReader
 		S5 = 5
 	}
 
+	public enum Statues
+	{
+		Amethyst = 0,
+		Turquoise = 1,
+		Topaz = 2,
+		Ruby = 3,
+		Sapphire = 4,
+		Emerald = 5,
+		Diamond = 6
+	}
+
+	public enum Keys
+	{
+		Red = 0,
+		Yellow = 1,
+		Green = 2,
+		Blue = 3,
+		Purple = 4
+	}
+
+	public enum Upgrades
+	{
+		Slide = 0,
+		Double = 1,
+		Grip = 2,
+		Screw = 3
+	}
+
 	public class LunaNightsSave
 	{
 		/// <summary>
 		/// What upgrades you have
 		/// These have to be sequential due to the way the game checks them on load
 		/// Setting this does not add them to the bingo card or remove them from the map
-		/// see HasSlide, HasDouble, HasGrip, HasScrew
+		/// see Upgrades
 		/// </summary>
 		public UpgradeLevel UpgradeLevel = UpgradeLevel.None;
 		/// <summary>
-		/// If slide knife has been picked up or not.
+		/// What upgrades you have picked up.
 		/// Fills bingo card and removes from map but does not provide upgrade.
-		/// See UpgradeLevel.
 		/// </summary>
-		public bool HasSlide = false;
-		/// <summary>
-		/// If double jump has been picked up or not.
-		/// Fills bingo card and removes from map but does not provide upgrade.
-		/// See UpgradeLevel.
-		/// </summary>
-		public bool HasDouble = false;
-		/// <summary>
-		/// If grip knife has been picked up or not.
-		/// Fills bingo card and removes from map but does not provide upgrade.
-		/// See UpgradeLevel.
-		/// </summary>
-		public bool HasGrip = false;
-		/// <summary>
-		/// If screw knife has been picked up or not.
-		/// Fills bingo card and removes from map but does not provide upgrade.
-		/// See UpgradeLevel.
-		/// </summary>
-		public bool HasScrew = false;
-		public bool HasRedKey = false;
-		public bool HasYellowKey = false;
-		public bool HasGreenKey = false;
-		public bool HasBlueKey = false;
-		public bool HasPurpleKey = false;
+		public List<Upgrades> Upgrades = new List<Upgrades>();
 		public double Exp = 0;
 		public int Gold = 0;
 		public int Amethyst = 0;
@@ -165,6 +187,16 @@ namespace NightsSaveReader
 		/// </summary>
 		public int ClockUpgrades = 0;
 		/// <summary>
+		/// What hp upgrades you have picked up.
+		/// Fills bingo card and removes from map but does not provide upgrade.
+		/// </summary>
+		public List<HpUpgrades> HpUpgradesInv = new List<HpUpgrades>();
+		/// <summary>
+		/// What mp upgrades you have picked up.
+		/// Fills bingo card and removes from map but does not provide upgrade.
+		/// </summary>
+		public List<MpUpgrades> MpUpgradesInv = new List<MpUpgrades>();
+		/// <summary>
 		/// What knife upgrades you have picked up.
 		/// Fills bingo card and removes from map but does not provide upgrade.
 		/// </summary>
@@ -174,6 +206,15 @@ namespace NightsSaveReader
 		/// Fills bingo card and removes from map but does not provide upgrade.
 		/// </summary>
 		public List<ClockUpgrades> ClockUpgradesInv = new List<ClockUpgrades>();
+		/// <summary>
+		/// What gem statues you have broken.
+		/// </summary>
+		public List<Statues> Statues = new List<Statues>();
+		/// <summary>
+		/// What keys you have picked up.
+		/// Fills bingo card and provides the effect of the key.
+		/// </summary>
+		public List<Keys> Keys = new List<Keys>();
 		/// <summary>
 		/// The date the save was last saved
 		/// Game uses local time for this

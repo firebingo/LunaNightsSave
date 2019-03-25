@@ -40,6 +40,44 @@ namespace NightsSaveReader
 			}
 		}
 
+		public static HpUpgrades StageToHpUpgrades(Stage s)
+		{
+			switch (s)
+			{
+				case Stage.Stage1:
+					return HpUpgrades.S1;
+				case Stage.Stage2:
+					return HpUpgrades.S2;
+				case Stage.Stage3:
+					return HpUpgrades.S3;
+				case Stage.Stage4:
+					return HpUpgrades.S4;
+				case Stage.Stage5:
+					return HpUpgrades.S5;
+				default:
+					return HpUpgrades.S1;
+			}
+		}
+
+		public static MpUpgrades StageToMpUpgrades(Stage s)
+		{
+			switch (s)
+			{
+				case Stage.Stage1:
+					return MpUpgrades.S1;
+				case Stage.Stage2:
+					return MpUpgrades.S2;
+				case Stage.Stage3:
+					return MpUpgrades.S3;
+				case Stage.Stage4:
+					return MpUpgrades.S4;
+				case Stage.Stage5:
+					return MpUpgrades.S5;
+				default:
+					return MpUpgrades.S1;
+			}
+		}
+
 		public static ClockUpgrades StageToClockUpgrades(Stage s)
 		{
 			switch(s)

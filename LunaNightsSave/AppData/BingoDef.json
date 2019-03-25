@@ -2,76 +2,461 @@
 	"Tiles": [
 		[
 			{
-				"Type": "Clock",
-				"Stage": 5,
-				"Data":  -1
-			},
-			{
-				"Type": "Knife",
-				"Stage": 5,
-				"Data": -1
-			},
-			{
 				"Type": "Hp",
 				"Stage": 5,
-				"Data": -1
+				"Data": -1,
+				"Hidden": false,
+				"Enabled": true
 			},
 			{
 				"Type": "Mp",
 				"Stage": 5,
-				"Data": -1
+				"Data": -1,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Knife",
+				"Stage": 5,
+				"Data": -1,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Clock",
+				"Stage": 5,
+				"Data": -1,
+				"Hidden": false,
+				"Enabled": true
 			},
 			{
 				"Type": "Trash",
 				"Stage": 5,
-				"Data": 1
+				"Data": 100221,
+				"Hidden": false,
+				"Enabled": true
 			},
 			{
 				"Type": "Trash",
 				"Stage": 5,
-				"Data": 1
+				"Data": 100220,
+				"Hidden": false,
+				"Enabled": true
 			},
 			{
 				"Type": "Trash",
 				"Stage": 5,
-				"Data": 1
+				"Data": 100219,
+				"Hidden": false,
+				"Enabled": true
 			}
 		],
 		[
 			{
-				"Type": "Clock",
-				"Stage": 6,
-				"Data": -1
-			},
-			{
-				"Type": "Knife",
-				"Stage": 6,
-				"Data": -1
-			},
-			{
 				"Type": "Hp",
 				"Stage": 6,
-				"Data": -1
+				"Data": -1,
+				"Hidden": false,
+				"Enabled": true
 			},
 			{
 				"Type": "Mp",
 				"Stage": 6,
-				"Data": -1
+				"Data": -1,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Knife",
+				"Stage": 6,
+				"Data": -1,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Clock",
+				"Stage": 6,
+				"Data": -1,
+				"Hidden": false,
+				"Enabled": true
 			},
 			{
 				"Type": "Trash",
 				"Stage": 6,
-				"Data": 1
+				"Data": 100273,
+				"Hidden": false,
+				"Enabled": true
 			},
 			{
 				"Type": "Trash",
 				"Stage": 6,
-				"Data": 1
+				"Data": 100272,
+				"Hidden": false,
+				"Enabled": true
 			},
 			{
 				"Type": "Trash",
 				"Stage": 6,
-				"Data": 1
+				"Data": 100275,
+				"Hidden": false,
+				"Enabled": true
+			}
+		],
+		[
+			{
+				"Type": "Hp",
+				"Stage": 7,
+				"Data": -1,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Mp",
+				"Stage": 7,
+				"Data": -1,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Knife",
+				"Stage": 7,
+				"Data": -1,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Clock",
+				"Stage": 7,
+				"Data": -1,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Trash",
+				"Stage": 7,
+				"Data": 100468,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Trash",
+				"Stage": 7,
+				"Data": 100594,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Trash",
+				"Stage": 7,
+				"Data": 100472,
+				"Hidden": false,
+				"Enabled": true
+			}
+		],
+		[
+			{
+				"Type": "Hp",
+				"Stage": 8,
+				"Data": -1,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Mp",
+				"Stage": 8,
+				"Data": -1,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Knife",
+				"Stage": 8,
+				"Data": -1,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Clock",
+				"Stage": 8,
+				"Data": -1,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Trash",
+				"Stage": 8,
+				"Data": 100619,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Trash",
+				"Stage": 8,
+				"Data": 100782,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Trash",
+				"Stage": 8,
+				"Data": 100684,
+				"Hidden": false,
+				"Enabled": true
+			}
+		],
+		[
+			{
+				"Type": "Hp",
+				"Stage": 9,
+				"Data": -1,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Mp",
+				"Stage": 9,
+				"Data": -1,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Knife",
+				"Stage": 9,
+				"Data": -1,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Clock",
+				"Stage": 9,
+				"Data": -1,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Trash",
+				"Stage": 9,
+				"Data": 100818,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Trash",
+				"Stage": 9,
+				"Data": 100816,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Trash",
+				"Stage": 9,
+				"Data": 100814,
+				"Hidden": false,
+				"Enabled": true
+			}
+		],
+		[
+			{
+				"Type": "Statue",
+				"Stage": -1,
+				"Data": 0,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Statue",
+				"Stage": -1,
+				"Data": 1,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Statue",
+				"Stage": -1,
+				"Data": 2,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Statue",
+				"Stage": -1,
+				"Data": 3,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Statue",
+				"Stage": -1,
+				"Data": 4,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Statue",
+				"Stage": -1,
+				"Data": 5,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Statue",
+				"Stage": -1,
+				"Data": 6,
+				"Hidden": false,
+				"Enabled": true
+			}
+		],
+		[
+			{
+				"Type": "Skill",
+				"Stage": -1,
+				"Data": -1,
+				"Hidden": false,
+				"Enabled": false
+			},
+			{
+				"Type": "Skill",
+				"Stage": -1,
+				"Data": -1,
+				"Hidden": false,
+				"Enabled": false
+			},
+			{
+				"Type": "Skill",
+				"Stage": -1,
+				"Data": -1,
+				"Hidden": false,
+				"Enabled": false
+			},
+			{
+				"Type": "Skill",
+				"Stage": -1,
+				"Data": -1,
+				"Hidden": false,
+				"Enabled": false
+			},
+			{
+				"Type": "Skill",
+				"Stage": -1,
+				"Data": -1,
+				"Hidden": false,
+				"Enabled": false
+			},
+			{
+				"Type": "Skill",
+				"Stage": -1,
+				"Data": -1,
+				"Hidden": false,
+				"Enabled": false
+			},
+			{
+				"Type": "Skill",
+				"Stage": -1,
+				"Data": -1,
+				"Hidden": true,
+				"Enabled": false
+			}
+		],
+		[
+			{
+				"Type": "Key",
+				"Stage": -1,
+				"Data": 0,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Key",
+				"Stage": -1,
+				"Data": 1,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Key",
+				"Stage": -1,
+				"Data": 2,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Key",
+				"Stage": -1,
+				"Data": 3,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Key",
+				"Stage": -1,
+				"Data": 4,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Key",
+				"Stage": -1,
+				"Data": -1,
+				"Hidden": true,
+				"Enabled": false
+			},
+			{
+				"Type": "Key",
+				"Stage": -1,
+				"Data": -1,
+				"Hidden": true,
+				"Enabled": false
+			}
+		],
+		[
+			{
+				"Type": "Upgrade",
+				"Stage": -1,
+				"Data": 0,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Upgrade",
+				"Stage": -1,
+				"Data": 1,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Upgrade",
+				"Stage": -1,
+				"Data": 2,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Upgrade",
+				"Stage": -1,
+				"Data": 3,
+				"Hidden": false,
+				"Enabled": true
+			},
+			{
+				"Type": "Upgrade",
+				"Stage": -1,
+				"Data": -1,
+				"Hidden": true,
+				"Enabled": false
+			},
+			{
+				"Type": "Upgrade",
+				"Stage": -1,
+				"Data": -1,
+				"Hidden": true,
+				"Enabled": false
+			},
+			{
+				"Type": "Upgrade",
+				"Stage": -1,
+				"Data": -1,
+				"Hidden": true,
+				"Enabled": false
 			}
 		]
 	]

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using LunaNightsSave.Helpers;
 using Newtonsoft.Json;
@@ -20,6 +21,7 @@ namespace LunaNightsSave.ViewModels
 		public int X;
 		public int Y;
 		public BingoTileDef TileDef;
+		
 
 		private BitmapImage _imgSrc;
 		public BitmapImage ImgSrc
@@ -27,7 +29,7 @@ namespace LunaNightsSave.ViewModels
 			get
 			{
 				if (_imgSrc == null)
-					_imgSrc = GridHelper.GetImageForBingoType(TileDef?.Type ?? null);
+					_imgSrc = GridHelper.GetImageForBingoType(TileDef?.Type ?? null, TileDef?.Data ?? -1);
 				return _imgSrc;
 			}
 			set
@@ -47,6 +49,31 @@ namespace LunaNightsSave.ViewModels
 			}
 		}
 
+		public Visibility TileVisible
+		{
+			get
+			{
+				return (TileDef == null || !TileDef.Hidden) ? Visibility.Visible : Visibility.Hidden;
+			}
+		}
+
+		public SolidColorBrush TileHoverBorder
+		{
+			get
+			{
+				return (TileDef == null || TileDef.Enabled) ? Application.Current.Resources["BingoStrokeHoverBrush"] as SolidColorBrush : Application.Current.Resources["BingoStrokeBrush"] as SolidColorBrush;
+			}
+		}
+
+		public double ImgWidth
+		{
+			get => Width - 4;
+		}
+		public double ImgHeight
+		{
+			get => Height - 4;
+		}
+
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		private void NotifyPropertyChanged(string info)
@@ -61,7 +88,11 @@ namespace LunaNightsSave.ViewModels
 		Knife,
 		Hp,
 		Mp,
-		Trash
+		Trash,
+		Statue,
+		Skill,
+		Key,
+		Upgrade
 	}
 
 	public static class BingoTileDefs
@@ -95,5 +126,7 @@ namespace LunaNightsSave.ViewModels
 		public BingoTileType Type;
 		public Stage Stage;
 		public int Data;
+		public bool Hidden;
+		public bool Enabled;
 	}
 }

@@ -26,6 +26,7 @@ namespace LunaNightsSave.Pages
 	public partial class MainPage : Page
 	{
 		private SaveEditor _saveEditor;
+		private List<Control> UpgradeGridControls = new List<Control>();
 		private readonly SynchronizationContext _syncContext;
 		private string _loadPath = string.Empty;
 		private string _save0Path = string.Empty;
@@ -191,12 +192,13 @@ namespace LunaNightsSave.Pages
 			if (FindResource("BingoTileTemplate") is ControlTemplate tileTemplate)
 			{
 				BingoTileDef def = null;
+				UpgradeGridControls.Clear();
 				for (int x = 0; x < SaveEditor.BingoWidth; ++x)
 				{
 					for (int y = 0; y < SaveEditor.BingoHeight; ++y)
 					{
 						BingoTileData tileData = new BingoTileData();
-						if (defs.Rank > x && defs.GetLength(x) > y)
+						if (defs.GetLength(0) > x && defs.GetLength(1) > y)
 						{
 							def = defs[x, y];
 							tileData.TileDef = def;
@@ -214,6 +216,8 @@ namespace LunaNightsSave.Pages
 						Grid.SetRow(gridTile, y);
 						Grid.SetColumn(gridTile, x);
 						BingoGrid.Children.Add(gridTile);
+						if (tileData.TileDef != null && tileData.TileDef.Type == BingoTileType.Upgrade)
+							UpgradeGridControls.Add(gridTile);
 					}
 				}
 			}
@@ -230,6 +234,14 @@ namespace LunaNightsSave.Pages
 			{
 				switch (data.TileDef.Type)
 				{
+					case BingoTileType.Hp:
+						if (PageModel.SaveInfo.HpUpgradesInv.Contains((int)SaveHelpers.StageToHpUpgrades(data.TileDef.Stage)))
+							return Visibility.Visible;
+						break;
+					case BingoTileType.Mp:
+						if (PageModel.SaveInfo.MpUpgradesInv.Contains((int)SaveHelpers.StageToMpUpgrades(data.TileDef.Stage)))
+							return Visibility.Visible;
+						break;
 					case BingoTileType.Clock:
 						if (PageModel.SaveInfo.ClockUpgradesInv.Contains((int)SaveHelpers.StageToClockUpgrades(data.TileDef.Stage)))
 							return Visibility.Visible;
@@ -242,9 +254,23 @@ namespace LunaNightsSave.Pages
 						if (PageModel.SaveInfo.TrashCans.Contains(data.TileDef.Data))
 							return Visibility.Visible;
 						break;
+					case BingoTileType.Statue:
+						if (PageModel.SaveInfo.Statues.Contains(data.TileDef.Data))
+							return Visibility.Visible;
+						break;
+					case BingoTileType.Skill:
+						break;
+					case BingoTileType.Key:
+						if (PageModel.SaveInfo.Keys.Contains(data.TileDef.Data))
+							return Visibility.Visible;
+						break;
+					case BingoTileType.Upgrade:
+						if (PageModel.SaveInfo.Upgrades.Contains(data.TileDef.Data))
+							return Visibility.Visible;
+						break;
 				}
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
 				ErrorTracker.CurrentError = ex.Message;
 			}
@@ -286,11 +312,40 @@ namespace LunaNightsSave.Pages
 		private void ProcessBingoTileFlip(BingoTileData data)
 		{
 			//TODO: Mp and Hp need inventory definitions in save editor
-			switch(data.TileDef.Type)
+			switch (data.TileDef.Type)
 			{
+				case BingoTileType.Hp:
+					var hu = (int)SaveHelpers.StageToHpUpgrades(data.TileDef.Stage);
+					if (PageModel.SaveInfo.HpUpgradesInv.Contains(hu))
+					{
+						data.ImgVisible = Visibility.Hidden;
+						PageModel.SaveInfo.HpUpgradesInv.Remove(hu);
+						PageModel.SaveInfo.HpUpgrades--;
+					}
+					else
+					{
+						data.ImgVisible = Visibility.Visible;
+						PageModel.SaveInfo.HpUpgradesInv.Add(hu);
+						PageModel.SaveInfo.HpUpgrades++;
+					}
+					break;
+				case BingoTileType.Mp:
+					var mu = (int)SaveHelpers.StageToMpUpgrades(data.TileDef.Stage);
+					if (PageModel.SaveInfo.MpUpgradesInv.Contains(mu))
+					{
+						data.ImgVisible = Visibility.Hidden;
+						PageModel.SaveInfo.MpUpgradesInv.Remove(mu);
+						PageModel.SaveInfo.MpUpgrades--;
+					}
+					else
+					{
+						data.ImgVisible = Visibility.Visible;
+						PageModel.SaveInfo.MpUpgradesInv.Add(mu);
+						PageModel.SaveInfo.MpUpgrades++;
+					}
+					break;
 				case BingoTileType.Clock:
 					var cu = (int)SaveHelpers.StageToClockUpgrades(data.TileDef.Stage);
-
 					if (PageModel.SaveInfo.ClockUpgradesInv.Contains(cu))
 					{
 						data.ImgVisible = Visibility.Hidden;
@@ -332,13 +387,116 @@ namespace LunaNightsSave.Pages
 						PageModel.SaveInfo.TrashCans.Add(t);
 					}
 					break;
+				case BingoTileType.Statue:
+					var s = data.TileDef.Data;
+					if (PageModel.SaveInfo.Statues.Contains(s))
+					{
+						data.ImgVisible = Visibility.Hidden;
+						PageModel.SaveInfo.Statues.Remove(s);
+					}
+					else
+					{
+						data.ImgVisible = Visibility.Visible;
+						PageModel.SaveInfo.Statues.Add(s);
+					}
+					break;
+				case BingoTileType.Key:
+					var k = data.TileDef.Data;
+					if (PageModel.SaveInfo.Keys.Contains(k))
+					{
+						data.ImgVisible = Visibility.Hidden;
+						PageModel.SaveInfo.Keys.Remove(k);
+					}
+					else
+					{
+						data.ImgVisible = Visibility.Visible;
+						PageModel.SaveInfo.Keys.Add(k);
+					}
+					break;
+				case BingoTileType.Upgrade:
+					{
+						HandleUpgradeToggle(data);
+						break;
+					}
 			}
 			Task.Run(() => SyncViewModelToSave(false));
 		}
 
+		private void HandleUpgradeToggle(BingoTileData data)
+		{
+			var u = data.TileDef.Data;
+			switch (u)
+			{
+				case (int)Upgrades.Slide:
+					if (PageModel.SaveInfo.Upgrades.Contains(u))
+					{
+						foreach (var c in UpgradeGridControls)
+						{
+							if (c.DataContext is BingoTileData td)
+								td.ImgVisible = Visibility.Hidden;
+						}
+						PageModel.SaveInfo.Upgrades.Clear();
+					}
+					else
+					{
+						foreach (var c in UpgradeGridControls)
+						{
+							if (c.DataContext is BingoTileData td)
+							{
+								if (td.TileDef.Data == ((int)Upgrades.Slide))
+									td.ImgVisible = Visibility.Visible;
+								else
+									td.ImgVisible = Visibility.Hidden;
+							}
+						}
+						PageModel.SaveInfo.Upgrades.Clear();
+						PageModel.SaveInfo.Upgrades.Add((int)Upgrades.Slide);
+					}
+					break;
+				case (int)Upgrades.Double:
+				case (int)Upgrades.Grip:
+				case (int)Upgrades.Screw:
+					if (PageModel.SaveInfo.Upgrades.Contains(u))
+					{
+						foreach (var c in UpgradeGridControls)
+						{
+							if (c.DataContext is BingoTileData td)
+							{
+								if (td.TileDef.Data >= u)
+									td.ImgVisible = Visibility.Hidden;
+							}
+						}
+						PageModel.SaveInfo.Upgrades.Clear();
+						for (var i = 0; i < u; ++i)
+						{
+							PageModel.SaveInfo.Upgrades.Add(i);
+						}
+					}
+					else
+					{
+						foreach (var c in UpgradeGridControls)
+						{
+							if (c.DataContext is BingoTileData td)
+							{
+								if (td.TileDef.Data <= u)
+									td.ImgVisible = Visibility.Visible;
+								else
+									td.ImgVisible = Visibility.Hidden;
+							}
+						}
+						PageModel.SaveInfo.Upgrades.Clear();
+						for (var i = 0; i <= u; ++i)
+						{
+							PageModel.SaveInfo.Upgrades.Add(i);
+						}
+					}
+					break;
+			}
+		}
+
 		private void AutoSaveTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
 		{
-			if(PageModel != null && PageModel.SaveInfo.SaveLoaded && Config.Instance.ConfigObject.AutoSave)
+			if (PageModel != null && PageModel.SaveInfo.SaveLoaded && Config.Instance.ConfigObject.AutoSave)
 				Task.Run(() => SyncViewModelToSave(true));
 			_autoSaveTimer.Start();
 		}
@@ -351,7 +509,7 @@ namespace LunaNightsSave.Pages
 				if (writeSave)
 					await _saveEditor.WriteSave();
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
 				_syncContext.Post((s) => ErrorTracker.CurrentError = ex.Message, null);
 			}

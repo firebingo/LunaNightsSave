@@ -1,4 +1,5 @@
 ﻿using LunaNightsSave.ViewModels;
+using NightsSaveReader;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,9 +20,9 @@ namespace LunaNightsSave.Helpers
 		private static int _maxGridWidth = _baseGridWidth;
 		private const int _baseGridHeight = 550;
 		private static int _maxGridHeight = _baseGridHeight;
-		private const int _baseTileWidth = 32;
+		private const int _baseTileWidth = 36;
 		private static int _maxTileWidth = _baseTileWidth;
-		private const int _baseTileHeight = 32;
+		private const int _baseTileHeight = 36;
 		private static int _maxTileHeight = _baseTileHeight;
 
 		/// <summary>
@@ -99,7 +100,7 @@ namespace LunaNightsSave.Helpers
 			}
 		}
 
-		public static BitmapImage GetImageForBingoType(BingoTileType? type)
+		public static BitmapImage GetImageForBingoType(BingoTileType? type, int Data)
 		{
 			try
 			{
@@ -125,9 +126,94 @@ namespace LunaNightsSave.Helpers
 						if (!BingoImages.ContainsKey("Trash"))
 							BingoImages.Add("Trash", new BitmapImage(new Uri("pack://application:,,,/AppData/Images/BingoTrash.png")));
 						return BingoImages["Trash"];
+					case BingoTileType.Key:
+						{
+							switch (Data)
+							{
+								case (int)Keys.Red:
+									if (!BingoImages.ContainsKey("KeyRed"))
+										BingoImages.Add("KeyRed", new BitmapImage(new Uri("pack://application:,,,/AppData/Images/BingoKeyRed.png")));
+									return BingoImages["KeyRed"];
+								case (int)Keys.Yellow:
+									if (!BingoImages.ContainsKey("KeyYellow"))
+										BingoImages.Add("KeyYellow", new BitmapImage(new Uri("pack://application:,,,/AppData/Images/BingoKeyYellow.png")));
+									return BingoImages["KeyYellow"];
+								case (int)Keys.Green:
+									if (!BingoImages.ContainsKey("KeyGreen"))
+										BingoImages.Add("KeyGreen", new BitmapImage(new Uri("pack://application:,,,/AppData/Images/BingoKeyGreen.png")));
+									return BingoImages["KeyGreen"];
+								case (int)Keys.Blue:
+									if (!BingoImages.ContainsKey("KeyBlue"))
+										BingoImages.Add("KeyBlue", new BitmapImage(new Uri("pack://application:,,,/AppData/Images/BingoKeyBlue.png")));
+									return BingoImages["KeyBlue"];
+								case (int)Keys.Purple:
+									if (!BingoImages.ContainsKey("KeyPurple"))
+										BingoImages.Add("KeyPurple", new BitmapImage(new Uri("pack://application:,,,/AppData/Images/BingoKeyPurple.png")));
+									return BingoImages["KeyPurple"];
+							}
+							break;
+						}
+					case BingoTileType.Statue:
+						{
+							switch (Data)
+							{
+								case (int)Statues.Amethyst:
+									if (!BingoImages.ContainsKey("SAmethyst"))
+										BingoImages.Add("SAmethyst", new BitmapImage(new Uri("pack://application:,,,/AppData/Images/BingoGemAmethyst.png")));
+									return BingoImages["SAmethyst"];
+								case (int)Statues.Turquoise:
+									if (!BingoImages.ContainsKey("STurquoise"))
+										BingoImages.Add("STurquoise", new BitmapImage(new Uri("pack://application:,,,/AppData/Images/BingoGemTurquoise.png")));
+									return BingoImages["STurquoise"];
+								case (int)Statues.Topaz:
+									if (!BingoImages.ContainsKey("STopaz"))
+										BingoImages.Add("STopaz", new BitmapImage(new Uri("pack://application:,,,/AppData/Images/BingoGemTopaz.png")));
+									return BingoImages["STopaz"];
+								case (int)Statues.Ruby:
+									if (!BingoImages.ContainsKey("SRuby"))
+										BingoImages.Add("SRuby", new BitmapImage(new Uri("pack://application:,,,/AppData/Images/BingoGemRuby.png")));
+									return BingoImages["SRuby"];
+								case (int)Statues.Sapphire:
+									if (!BingoImages.ContainsKey("SSapphire"))
+										BingoImages.Add("SSapphire", new BitmapImage(new Uri("pack://application:,,,/AppData/Images/BingoGemSapphire.png")));
+									return BingoImages["SSapphire"];
+								case (int)Statues.Emerald:
+									if (!BingoImages.ContainsKey("SEmerald"))
+										BingoImages.Add("SEmerald", new BitmapImage(new Uri("pack://application:,,,/AppData/Images/BingoGemEmerald.png")));
+									return BingoImages["SEmerald"];
+								case (int)Statues.Diamond:
+									if (!BingoImages.ContainsKey("SDiamond"))
+										BingoImages.Add("SDiamond", new BitmapImage(new Uri("pack://application:,,,/AppData/Images/BingoGemDiamond.png")));
+									return BingoImages["SDiamond"];
+							}
+							break;
+						}
+					case BingoTileType.Upgrade:
+						{
+							switch (Data)
+							{
+								case (int)Upgrades.Slide:
+									if (!BingoImages.ContainsKey("USlide"))
+										BingoImages.Add("USlide", new BitmapImage(new Uri("pack://application:,,,/AppData/Images/BingoSlide.png")));
+									return BingoImages["USlide"];
+								case (int)Upgrades.Double:
+									if (!BingoImages.ContainsKey("UDouble"))
+										BingoImages.Add("UDouble", new BitmapImage(new Uri("pack://application:,,,/AppData/Images/BingoDouble.png")));
+									return BingoImages["UDouble"];
+								case (int)Upgrades.Grip:
+									if (!BingoImages.ContainsKey("UGrip"))
+										BingoImages.Add("UGrip", new BitmapImage(new Uri("pack://application:,,,/AppData/Images/BingoGrip.png")));
+									return BingoImages["UGrip"];
+								case (int)Upgrades.Screw:
+									if (!BingoImages.ContainsKey("UScrew"))
+										BingoImages.Add("UScrew", new BitmapImage(new Uri("pack://application:,,,/AppData/Images/BingoScrew.png")));
+									return BingoImages["UScrew"];
+							}
+							break;
+						}
 				}
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
 				ErrorTracker.CurrentError = ex.Message;
 			}

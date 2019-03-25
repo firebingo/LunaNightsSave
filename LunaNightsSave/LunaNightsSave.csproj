@@ -153,5 +153,36 @@
   <ItemGroup>
     <Resource Include="AppData\Images\BingoDefault.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="AppData\Images\BingoClock.png" />
+    <Resource Include="AppData\Images\BingoDouble.png" />
+    <Resource Include="AppData\Images\BingoGemAmethyst.png" />
+    <Resource Include="AppData\Images\BingoGemRuby.png" />
+    <Resource Include="AppData\Images\BingoGemTopaz.png" />
+    <Resource Include="AppData\Images\BingoGemTurquoise.png" />
+    <Resource Include="AppData\Images\BingoGrip.png" />
+    <Resource Include="AppData\Images\BingoHp.png" />
+    <Resource Include="AppData\Images\BingoKeyBlue.png" />
+    <Resource Include="AppData\Images\BingoKeyGreen.png" />
+    <Resource Include="AppData\Images\BingoKeyPurple.png" />
+    <Resource Include="AppData\Images\BingoKeyRed.png" />
+    <Resource Include="AppData\Images\BingoKeyYellow.png" />
+    <Resource Include="AppData\Images\BingoKnife.png" />
+    <Resource Include="AppData\Images\BingoMp.png" />
+    <Resource Include="AppData\Images\BingoScrew.png" />
+    <Resource Include="AppData\Images\BingoSkillAuto.png" />
+    <Resource Include="AppData\Images\BingoSkillChainsaw.png" />
+    <Resource Include="AppData\Images\BingoSkillDaggers.png" />
+    <Resource Include="AppData\Images\BingoSkillHoly.png" />
+    <Resource Include="AppData\Images\BingoSkillShield.png" />
+    <Resource Include="AppData\Images\BingoSkillStun.png" />
+    <Resource Include="AppData\Images\BingoSlide.png" />
+    <Resource Include="AppData\Images\BingoTrash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="AppData\Images\BingoGemDiamond.png" />
+    <Resource Include="AppData\Images\BingoGemEmerald.png" />
+    <Resource Include="AppData\Images\BingoGemSapphire.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -41,9 +41,31 @@ namespace NightsSaveReader
 			if (lines.Count != _lineCount)
 				throw new Exception("Save file may be corrupted");
 
-			//TODO: Mp and Hp upgrades need inventory definitions
+			//Inventory Hp upgrades
+			if (lines[20] == "20")
+				Save.HpUpgradesInv.Add(HpUpgrades.S1);
+			if (lines[21] == "21")
+				Save.HpUpgradesInv.Add(HpUpgrades.S2);
+			if (lines[22] == "22")
+				Save.HpUpgradesInv.Add(HpUpgrades.S3);
+			if (lines[23] == "23")
+				Save.HpUpgradesInv.Add(HpUpgrades.S4);
+			if (lines[24] == "24")
+				Save.HpUpgradesInv.Add(HpUpgrades.S5);
 
-			//Inventory knife upgrades
+			//Inventory Mp upgrades
+			if (lines[40] == "40")
+				Save.MpUpgradesInv.Add(MpUpgrades.S1);
+			if (lines[41] == "41")
+				Save.MpUpgradesInv.Add(MpUpgrades.S2);
+			if (lines[42] == "42")
+				Save.MpUpgradesInv.Add(MpUpgrades.S3);
+			if (lines[43] == "43")
+				Save.MpUpgradesInv.Add(MpUpgrades.S4);
+			if (lines[44] == "44")
+				Save.MpUpgradesInv.Add(MpUpgrades.S5);
+
+			//Inventory Knife upgrades
 			if (lines[60] == "60")
 				Save.KnifeUpgradesInv.Add(KnifeUpgrades.S1);
 			if (lines[61] == "61")
@@ -69,25 +91,25 @@ namespace NightsSaveReader
 
 			//Inventory Upgrades
 			if (lines[80] == "80")
-				Save.HasSlide = true;
+				Save.Upgrades.Add(Upgrades.Slide);
 			if (lines[81] == "81")
-				Save.HasDouble = true;
+				Save.Upgrades.Add(Upgrades.Double);
 			if (lines[82] == "82")
-				Save.HasGrip = true;
+				Save.Upgrades.Add(Upgrades.Grip);
 			if (lines[83] == "83")
-				Save.HasScrew = true;
+				Save.Upgrades.Add(Upgrades.Screw);
 
 			//Keys
 			if (lines[90] == "90")
-				Save.HasRedKey = true;
+				Save.Keys.Add(Keys.Red);
 			if (lines[91] == "91")
-				Save.HasYellowKey = true;
+				Save.Keys.Add(Keys.Yellow);
 			if (lines[92] == "92")
-				Save.HasGreenKey = true;
+				Save.Keys.Add(Keys.Green);
 			if (lines[93] == "93")
-				Save.HasBlueKey = true;
+				Save.Keys.Add(Keys.Blue);
 			if (lines[94] == "94")
-				Save.HasPurpleKey = true;
+				Save.Keys.Add(Keys.Purple);
 
 			//Position in stage
 			int.TryParse(lines[100], out Save.PosX);
@@ -128,12 +150,29 @@ namespace NightsSaveReader
 			var trashLines = lines[120].Split(',');
 			foreach (var l in trashLines)
 			{
-
+				if (Enum.TryParse(l, out TrashCans can))
+					Save.TrashCans.Add(can);
 			}
 
 			//Bought Upgrades
 			int.TryParse(lines[134], out Save.ClockUpgradesBought);
 			int.TryParse(lines[135], out Save.KnifeUpgradesBought);
+
+			//Gem Statues
+			if (lines[250] == "250")
+				Save.Statues.Add(Statues.Amethyst);
+			if (lines[251] == "251")
+				Save.Statues.Add(Statues.Turquoise);
+			if (lines[252] == "252")
+				Save.Statues.Add(Statues.Topaz);
+			if (lines[253] == "253")
+				Save.Statues.Add(Statues.Ruby);
+			if (lines[254] == "254")
+				Save.Statues.Add(Statues.Sapphire);
+			if (lines[255] == "255")
+				Save.Statues.Add(Statues.Emerald);
+			if (lines[256] == "256")
+				Save.Statues.Add(Statues.Diamond);
 		}
 
 		/// <summary>
@@ -145,51 +184,133 @@ namespace NightsSaveReader
 		{
 			var lines = await LoadLines(_currentPath);
 
+			//Inventory Hp upgrades
+			if (Save.HpUpgradesInv.Contains(HpUpgrades.S1))
+				lines[20] = "20";
+			else
+				lines[20] = "0";
+			if (Save.HpUpgradesInv.Contains(HpUpgrades.S2))
+				lines[21] = "21";
+			else
+				lines[21] = "0";
+			if (Save.HpUpgradesInv.Contains(HpUpgrades.S3))
+				lines[22] = "22";
+			else
+				lines[22] = "0";
+			if (Save.HpUpgradesInv.Contains(HpUpgrades.S4))
+				lines[23] = "23";
+			else
+				lines[23] = "0";
+			if (Save.HpUpgradesInv.Contains(HpUpgrades.S5))
+				lines[24] = "24";
+			else
+				lines[24] = "0";
+
+			//Inventory Mp upgrades
+			if (Save.MpUpgradesInv.Contains(MpUpgrades.S1))
+				lines[40] = "40";
+			else
+				lines[40] = "0";
+			if (Save.MpUpgradesInv.Contains(MpUpgrades.S2))
+				lines[41] = "41";
+			else
+				lines[41] = "0";
+			if (Save.MpUpgradesInv.Contains(MpUpgrades.S3))
+				lines[42] = "42";
+			else
+				lines[42] = "0";
+			if (Save.MpUpgradesInv.Contains(MpUpgrades.S4))
+				lines[43] = "43";
+			else
+				lines[43] = "0";
+			if (Save.MpUpgradesInv.Contains(MpUpgrades.S5))
+				lines[44] = "44";
+			else
+				lines[44] = "0";
+
 			//Inventory knife upgrades
 			if (Save.KnifeUpgradesInv.Contains(KnifeUpgrades.S1))
 				lines[60] = "60";
+			else
+				lines[60] = "0";
 			if (Save.KnifeUpgradesInv.Contains(KnifeUpgrades.S2))
 				lines[61] = "61";
+			else
+				lines[61] = "0";
 			if (Save.KnifeUpgradesInv.Contains(KnifeUpgrades.S3))
 				lines[62] = "62";
+			else
+				lines[62] = "0";
 			if (Save.KnifeUpgradesInv.Contains(KnifeUpgrades.S4))
 				lines[63] = "63";
+			else
+				lines[63] = "0";
 			if (Save.KnifeUpgradesInv.Contains(KnifeUpgrades.S5))
 				lines[64] = "64";
+			else
+				lines[64] = "0";
 
 			//Inventory clock upgrades
 			if (Save.ClockUpgradesInv.Contains(ClockUpgrades.S1))
 				lines[70] = "70";
+			else
+				lines[70] = "0";
 			if (Save.ClockUpgradesInv.Contains(ClockUpgrades.S2))
 				lines[71] = "71";
+			else
+				lines[71] = "0";
 			if (Save.ClockUpgradesInv.Contains(ClockUpgrades.S3))
 				lines[72] = "72";
+			else
+				lines[72] = "0";
 			if (Save.ClockUpgradesInv.Contains(ClockUpgrades.S4))
 				lines[73] = "73";
+			else
+				lines[73] = "0";
 			if (Save.ClockUpgradesInv.Contains(ClockUpgrades.S5))
 				lines[74] = "74";
+			else
+				lines[74] = "0";
 
 			//Inventory Upgrades
-			if (Save.HasSlide)
+			if (Save.Upgrades.Contains(Upgrades.Slide))
 				lines[80] = "80";
-			if (Save.HasDouble)
+			else
+				lines[80] = "0";
+			if (Save.Upgrades.Contains(Upgrades.Double))
 				lines[81] = "81";
-			if (Save.HasGrip)
+			else
+				lines[81] = "0";
+			if (Save.Upgrades.Contains(Upgrades.Grip))
 				lines[82] = "82";
-			if (Save.HasScrew)
+			else
+				lines[82] = "0";
+			if (Save.Upgrades.Contains(Upgrades.Screw))
 				lines[83] = "83";
+			else
+				lines[83] = "0";
 
 			//Keys
-			if (Save.HasRedKey)
+			if(Save.Keys.Contains(Keys.Red))
 				lines[90] = "90";
-			if (Save.HasYellowKey)
+			else
+				lines[90] = "0";
+			if (Save.Keys.Contains(Keys.Yellow))
 				lines[91] = "91";
-			if (Save.HasGreenKey)
+			else
+				lines[91] = "0";
+			if (Save.Keys.Contains(Keys.Green))
 				lines[92] = "92";
-			if (Save.HasBlueKey)
+			else
+				lines[92] = "0";
+			if (Save.Keys.Contains(Keys.Blue))
 				lines[93] = "93";
-			if (Save.HasPurpleKey)
+			else
+				lines[93] = "0";
+			if (Save.Keys.Contains(Keys.Purple))
 				lines[94] = "94";
+			else
+				lines[94] = "0";
 
 			//Position in stage
 			lines[100] = Save.PosX.ToString();
@@ -229,13 +350,42 @@ namespace NightsSaveReader
 			lines[118] = Save.Gold.ToString();
 
 			//TrashCans
-			//TODO: Do this when I figure out all the ids
-			//var cans = Save.TrashCans.Select(x => ((int)x).ToString());
-			//lines[120] = $"{(cans.Count() == 0 ? "0" : $"{string.Join(",", cans)},")}";
+			var cans = Save.TrashCans.Select(x => ((int)x).ToString());
+			lines[120] = $"{(cans.Count() == 0 ? "0" : $"{string.Join(",", cans)},")}";
 
 			//Bought Upgrades
 			lines[134] = Save.ClockUpgradesBought.ToString();
 			lines[135] = Save.KnifeUpgradesBought.ToString();
+
+			//Gem Statues
+			if (Save.Statues.Contains(Statues.Amethyst))
+				lines[250] = "250";
+			else
+				lines[250] = "0";
+			if (Save.Statues.Contains(Statues.Turquoise))
+				lines[251] = "251";
+			else
+				lines[251] = "0";
+			if (Save.Statues.Contains(Statues.Topaz))
+				lines[252] = "252";
+			else
+				lines[252] = "0";
+			if (Save.Statues.Contains(Statues.Ruby))
+				lines[253] = "253";
+			else
+				lines[253] = "0";
+			if (Save.Statues.Contains(Statues.Sapphire))
+				lines[254] = "254";
+			else
+				lines[254] = "0";
+			if (Save.Statues.Contains(Statues.Emerald))
+				lines[255] = "255";
+			else
+				lines[255] = "0";
+			if (Save.Statues.Contains(Statues.Diamond))
+				lines[256] = "256";
+			else
+				lines[256] = "0";
 
 			await WriteLines(_currentPath, lines.ToArray());
 		}

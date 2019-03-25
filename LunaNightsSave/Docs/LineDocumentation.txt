@@ -1,3 +1,5 @@
+Upgrade number in inv slot 0
+Upgrade number in inv slot 1
 0
 0
 0
@@ -14,6 +16,13 @@
 0
 0
 0
+Number of cards in inventory
+0
+Stage 1 Hp upgrade value = 20, these do not give the upgrades but does remove from map
+Stage 2 Hp upgrade value = 21
+Stage 3 Hp upgrade value = 22
+Stage 4 Hp upgrade value = 23
+Stage 5 Hp upgrade value = 24
 0
 0
 0
@@ -29,20 +38,11 @@
 0
 0
 0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
+Stage 1 Mp upgrade value = 40, these do not give the upgrades but does remove from map
+Stage 2 Mp upgrade value = 41
+Stage 3 Mp upgrade value = 42
+Stage 4 Mp upgrade value = 43
+Stage 5 Mp upgrade value = 44
 0
 0
 0
@@ -248,13 +248,13 @@ Number of knife upgrades bought, not tied to 109
 0
 0
 0
-0
-0
-0
-0
-0
-0
-0
+Amethyst Statue Broken, value = 250
+Turquoise Statue Broken, value = 251
+Topaz Statue Broken, value = 252
+Ruby Statue Broken, value = 253
+Sapphire Statue Broken, value = 254
+Emerald Statue Broken, value = 255
+Diamond Statue Broken, value = 256
 0
 0
 0

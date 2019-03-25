@@ -26,15 +26,6 @@ namespace LunaNightsSave.ViewModels
 			}
 		}
 
-		public bool HasSlide { get; set; }
-		public bool HasDouble { get; set; }
-		public bool HasGrip { get; set; }
-		public bool HasScrew { get; set; }
-		public bool HasRedKey { get; set; }
-		public bool HasYellowKey { get; set; }
-		public bool HasGreenKey { get; set; }
-		public bool HasBlueKey { get; set; }
-		public bool HasPurpleKey { get; set; }
 		private double _exp;
 		public double Exp
 		{
@@ -260,8 +251,13 @@ namespace LunaNightsSave.ViewModels
 			}
 		}
 
+		public ObservableCollection<int> Upgrades { get; set; }
+		public ObservableCollection<int> HpUpgradesInv { get; set; }
+		public ObservableCollection<int> MpUpgradesInv { get; set; }
 		public ObservableCollection<int> KnifeUpgradesInv { get; set; }
 		public ObservableCollection<int> ClockUpgradesInv { get; set; }
+		public ObservableCollection<int> Statues { get; set; }
+		public ObservableCollection<int> Keys { get; set; }
 		public DateTime SaveDate { get; set; }
 		public ObservableCollection<int> TrashCans { get; set; }
 
@@ -270,8 +266,13 @@ namespace LunaNightsSave.ViewModels
 		public SaveInfoViewModel(SynchronizationContext syncContext)
 		{
 			_syncContext = syncContext;
+			Upgrades = new ObservableCollection<int>();
+			HpUpgradesInv = new ObservableCollection<int>();
+			MpUpgradesInv = new ObservableCollection<int>();
 			KnifeUpgradesInv = new ObservableCollection<int>();
 			ClockUpgradesInv = new ObservableCollection<int>();
+			Statues = new ObservableCollection<int>();
+			Keys = new ObservableCollection<int>();
 			TrashCans = new ObservableCollection<int>();
 		}
 
@@ -284,16 +285,17 @@ namespace LunaNightsSave.ViewModels
 			{
 				lock (_lockObject)
 				{
-					HasSlide = save.HasSlide;
-					HasDouble = save.HasDouble;
-					HasGrip = save.HasGrip;
-					HasScrew = save.HasScrew;
+					Upgrades.Clear();
+					foreach (var u in save.Upgrades)
+					{
+						Upgrades.Add((int)u);
+					}
 
-					HasRedKey = save.HasRedKey;
-					HasYellowKey = save.HasYellowKey;
-					HasGreenKey = save.HasGreenKey;
-					HasBlueKey = save.HasBlueKey;
-					HasPurpleKey = save.HasPurpleKey;
+					Keys.Clear();
+					foreach(var k in save.Keys)
+					{
+						Keys.Add((int)k);
+					}
 
 					Exp = save.Exp;
 					Gold = save.Gold;
@@ -319,6 +321,18 @@ namespace LunaNightsSave.ViewModels
 					_knifeUpgradesBought = save.KnifeUpgradesBought;
 					_clockUpgradesBought = save.ClockUpgradesBought;
 
+					HpUpgradesInv.Clear();
+					foreach (var h in save.HpUpgradesInv)
+					{
+						HpUpgradesInv.Add((int)h);
+					}
+
+					MpUpgradesInv.Clear();
+					foreach (var m in save.MpUpgradesInv)
+					{
+						MpUpgradesInv.Add((int)m);
+					}
+
 					KnifeUpgradesInv.Clear();
 					foreach (var k in save.KnifeUpgradesInv)
 					{
@@ -335,6 +349,12 @@ namespace LunaNightsSave.ViewModels
 					foreach (var t in save.TrashCans)
 					{
 						TrashCans.Add((int)t);
+					}
+
+					Statues.Clear();
+					foreach (var t in save.Statues)
+					{
+						Statues.Add((int)t);
 					}
 
 					SaveDate = save.SaveDate;
@@ -358,16 +378,29 @@ namespace LunaNightsSave.ViewModels
 			{
 				lock (_lockObject)
 				{
-					save.HasSlide = HasSlide;
-					save.HasDouble = HasDouble;
-					save.HasGrip = HasGrip;
-					save.HasScrew = HasScrew;
+					save.Upgrades.Clear();
+					foreach(var u in Upgrades)
+					{
+						if (Enum.IsDefined(typeof(Upgrades), u))
+							save.Upgrades.Add((Upgrades)u);
+					}
 
-					save.HasRedKey = HasRedKey;
-					save.HasYellowKey = HasYellowKey;
-					save.HasGreenKey = HasGreenKey;
-					save.HasBlueKey = HasBlueKey;
-					save.HasPurpleKey = HasPurpleKey;
+					save.UpgradeLevel = UpgradeLevel.None;
+					if (save.Upgrades.Contains(NightsSaveReader.Upgrades.Slide))
+						save.UpgradeLevel = UpgradeLevel.Slide;
+					if (save.Upgrades.Contains(NightsSaveReader.Upgrades.Double))
+						save.UpgradeLevel = UpgradeLevel.Double;
+					if (save.Upgrades.Contains(NightsSaveReader.Upgrades.Grip))
+						save.UpgradeLevel = UpgradeLevel.Grip;
+					if (save.Upgrades.Contains(NightsSaveReader.Upgrades.Screw))
+						save.UpgradeLevel = UpgradeLevel.Screw;
+
+					save.Keys.Clear();
+					foreach (var k in Keys)
+					{
+						if (Enum.IsDefined(typeof(Keys), k))
+							save.Keys.Add((Keys)k);
+					}
 
 					save.Exp = Exp;
 					save.Gold = Gold;
@@ -394,6 +427,20 @@ namespace LunaNightsSave.ViewModels
 					save.KnifeUpgradesBought = KnifeUpgradesBought;
 					save.ClockUpgradesBought = ClockUpgradesBought;
 
+					save.HpUpgradesInv.Clear();
+					foreach (var h in HpUpgradesInv)
+					{
+						if (Enum.IsDefined(typeof(HpUpgrades), h))
+							save.HpUpgradesInv.Add((HpUpgrades)h);
+					}
+
+					save.MpUpgradesInv.Clear();
+					foreach (var m in MpUpgradesInv)
+					{
+						if (Enum.IsDefined(typeof(MpUpgrades), m))
+							save.MpUpgradesInv.Add((MpUpgrades)m);
+					}
+
 					save.KnifeUpgradesInv.Clear();
 					foreach (var k in KnifeUpgradesInv)
 					{
@@ -413,6 +460,13 @@ namespace LunaNightsSave.ViewModels
 					{
 						if (Enum.IsDefined(typeof(TrashCans), t))
 							save.TrashCans.Add((TrashCans)t);
+					}
+
+					save.Statues.Clear();
+					foreach (var s in Statues)
+					{
+						if (Enum.IsDefined(typeof(Statues), s))
+							save.Statues.Add((Statues)s);
 					}
 
 					save.SaveDate = SaveDate;

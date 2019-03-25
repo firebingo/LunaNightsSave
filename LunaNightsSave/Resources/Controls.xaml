@@ -4,13 +4,15 @@
 
     <!-- Template for the tiles on the map grid -->
     <ControlTemplate x:Key="BingoTileTemplate" TargetType="{x:Type Control}">
-        <Canvas Height="{Binding Height}" Width="{Binding Width}">
-            <Image Source="{Binding ImgSrc}" Visibility="{Binding ImgVisible}" Height="{Binding Height}" Width="{Binding Width}"/>
+        <Canvas Height="{Binding Height}" Width="{Binding Width}" Visibility="{Binding Path=TileVisible}">
+            <Grid Visibility="{Binding ImgVisible}" Height="{Binding Height}" Width="{Binding Width}" Panel.ZIndex="2">
+                <Image Source="{Binding ImgSrc}" Height="{Binding ImgHeight}" Width="{Binding ImgWidth}" VerticalAlignment="Center" HorizontalAlignment="Center" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+            </Grid>
             <Rectangle x:Name="rect" Height="{Binding Height}" Width="{Binding Width}" Fill="{StaticResource BingoFillBrush}" Stroke="{StaticResource BingoStrokeBrush}" StrokeThickness="0.5" Panel.ZIndex="1"/>
         </Canvas>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter TargetName="rect" Property="Stroke" Value="{StaticResource ResourceKey=BingoStrokeHoverBrush}"/>
+                <Setter TargetName="rect" Property="Stroke" Value="{Binding Path=TileHoverBorder}"/>
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
