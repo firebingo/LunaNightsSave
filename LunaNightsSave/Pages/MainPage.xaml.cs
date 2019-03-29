@@ -30,11 +30,11 @@ namespace LunaNightsSave.Pages
 		private readonly SynchronizationContext _syncContext;
 		private string _loadPath = string.Empty;
 		private string _save0Path = string.Empty;
-		private readonly SolidColorBrush _save0Color = Brushes.Red;
+		private readonly SolidColorBrush _save0Color = new SolidColorBrush(Color.FromRgb(123, 215, 55));
 		private string _save1Path = string.Empty;
-		private readonly SolidColorBrush _save1Color = Brushes.Green;
+		private readonly SolidColorBrush _save1Color = new SolidColorBrush(Color.FromRgb(255, 97, 117));
 		private string _save2Path = string.Empty;
-		private readonly SolidColorBrush _save2Color = Brushes.Blue;
+		private readonly SolidColorBrush _save2Color = new SolidColorBrush(Color.FromRgb(0, 119, 199));
 		private System.Timers.Timer _autoSaveTimer;
 
 		public MainPageModel PageModel;
