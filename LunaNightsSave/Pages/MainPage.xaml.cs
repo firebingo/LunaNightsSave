@@ -72,7 +72,7 @@ namespace LunaNightsSave.Pages
 				if (File.Exists(_save0Path))
 				{
 					await _saveEditor.LoadSave(_save0Path, false);
-					sav.Add(new SaveSelectionModel(0, $"Save 0 - Time: {_saveEditor.Save.SaveDate.ToString(SaveEditor.DateFormat)} - Stage: {((int)SaveHelpers.StageToStageDisplay(_saveEditor.Save.Stage)).ToString()}", _save0Color));
+					sav.Add(new SaveSelectionModel(0, $"Save 0 - Time: {_saveEditor.Save.SaveDate.ToString(SaveLines.DATE_FORMAT)} - Stage: {((int)SaveHelpers.StageToStageDisplay(_saveEditor.Save.Stage)).ToString()}", _save0Color));
 				}
 				else
 					sav.Add(new SaveSelectionModel(0, $"Save 0 - New Game", _save0Color));
@@ -80,7 +80,7 @@ namespace LunaNightsSave.Pages
 				if (File.Exists(_save1Path))
 				{
 					await _saveEditor.LoadSave(_save1Path, false);
-					sav.Add(new SaveSelectionModel(1, $"Save 1 - Time: {_saveEditor.Save.SaveDate.ToString(SaveEditor.DateFormat)} - Stage: {((int)SaveHelpers.StageToStageDisplay(_saveEditor.Save.Stage)).ToString()}", _save1Color));
+					sav.Add(new SaveSelectionModel(1, $"Save 1 - Time: {_saveEditor.Save.SaveDate.ToString(SaveLines.DATE_FORMAT)} - Stage: {((int)SaveHelpers.StageToStageDisplay(_saveEditor.Save.Stage)).ToString()}", _save1Color));
 				}
 				else
 					sav.Add(new SaveSelectionModel(1, $"Save 1 - New Game", _save1Color));
@@ -88,7 +88,7 @@ namespace LunaNightsSave.Pages
 				if (File.Exists(_save2Path))
 				{
 					await _saveEditor.LoadSave(_save2Path, false);
-					sav.Add(new SaveSelectionModel(2, $"Save 2 - Time: {_saveEditor.Save.SaveDate.ToString(SaveEditor.DateFormat)} - Stage: {((int)SaveHelpers.StageToStageDisplay(_saveEditor.Save.Stage)).ToString()}", _save2Color));
+					sav.Add(new SaveSelectionModel(2, $"Save 2 - Time: {_saveEditor.Save.SaveDate.ToString(SaveLines.DATE_FORMAT)} - Stage: {((int)SaveHelpers.StageToStageDisplay(_saveEditor.Save.Stage)).ToString()}", _save2Color));
 				}
 				else
 					sav.Add(new SaveSelectionModel(2, $"Save 2 - New Game", _save2Color));
@@ -160,13 +160,13 @@ namespace LunaNightsSave.Pages
 			var gridColumns = new List<ColumnDefinition>();
 			var gridRows = new List<RowDefinition>();
 
-			GridHelper.CalculateGridSizes(BingoGrid, SaveEditor.BingoWidth, SaveEditor.BingoHeight);
+			GridHelper.CalculateGridSizes(BingoGrid, BingoTileDefs.Width, BingoTileDefs.Height);
 			BingoGrid.HorizontalAlignment = HorizontalAlignment.Center;
 			BingoGrid.VerticalAlignment = VerticalAlignment.Center;
-			double colWidth = BingoGrid.Width / SaveEditor.BingoWidth;
-			double rowHeight = BingoGrid.Height / SaveEditor.BingoHeight;
+			double colWidth = BingoGrid.Width / BingoTileDefs.Width;
+			double rowHeight = BingoGrid.Height / BingoTileDefs.Height;
 
-			for (int x = 0; x < SaveEditor.BingoWidth; ++x)
+			for (int x = 0; x < BingoTileDefs.Width; ++x)
 			{
 				ColumnDefinition column = new ColumnDefinition();
 				gridColumns.Add(column);
@@ -176,7 +176,7 @@ namespace LunaNightsSave.Pages
 				col.Width = new GridLength(colWidth);
 				BingoGrid.ColumnDefinitions.Add(col);
 			}
-			for (int y = 0; y < SaveEditor.BingoHeight; ++y)
+			for (int y = 0; y < BingoTileDefs.Height; ++y)
 			{
 				RowDefinition row = new RowDefinition();
 				gridRows.Add(row);
@@ -193,9 +193,9 @@ namespace LunaNightsSave.Pages
 			{
 				BingoTileDef def = null;
 				UpgradeGridControls.Clear();
-				for (int x = 0; x < SaveEditor.BingoWidth; ++x)
+				for (int x = 0; x < BingoTileDefs.Width; ++x)
 				{
-					for (int y = 0; y < SaveEditor.BingoHeight; ++y)
+					for (int y = 0; y < BingoTileDefs.Height; ++y)
 					{
 						BingoTileData tileData = new BingoTileData();
 						if (defs.GetLength(0) > x && defs.GetLength(1) > y)

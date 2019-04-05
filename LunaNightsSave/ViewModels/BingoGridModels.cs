@@ -21,7 +21,6 @@ namespace LunaNightsSave.ViewModels
 		public int X;
 		public int Y;
 		public BingoTileDef TileDef;
-		
 
 		private BitmapImage _imgSrc;
 		public BitmapImage ImgSrc
@@ -99,6 +98,8 @@ namespace LunaNightsSave.ViewModels
 	{
 		private static readonly string _tileDefPath = "AppData/BingoDef.json";
 		public static BingoTileDef[,] Tiles;
+		public static readonly int Width = 9;
+		public static readonly int Height = 7;
 
 		static BingoTileDefs()
 		{
@@ -108,6 +109,10 @@ namespace LunaNightsSave.ViewModels
 				{
 					var jo = JObject.Parse(File.ReadAllText(_tileDefPath));
 					Tiles = jo["Tiles"].ToObject<BingoTileDef[,]>();
+					if (jo.TryParseJsonProperty("Width", out int i))
+						Width = i;
+					if (jo.TryParseJsonProperty("Height", out i))
+						Height = i;
 					return;
 				}
 			}

@@ -5,15 +5,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static NightsSaveReader.SaveLines;
 
 namespace NightsSaveReader
 {
 	public class SaveEditor
 	{
-		private static readonly int _lineCount = 1000;
-		public static readonly string DateFormat = "HH:mm dd/MM/yyyy";
-		public static readonly int BingoWidth = 9;
-		public static readonly int BingoHeight = 7;
 		public LunaNightsSave Save;
 		private string _currentPath;
 
@@ -38,116 +35,116 @@ namespace NightsSaveReader
 
 			var lines = await LoadLines(_currentPath);
 
-			if (lines.Count != _lineCount)
+			if (lines.Count != LINE_COUNT)
 				throw new Exception("Save file may be corrupted");
 
 			//Inventory Hp upgrades
-			if (lines[20] == "20")
+			if (lines[HP_UPGRADE_S1] == HP_UPGRADE_S1.ToString())
 				Save.HpUpgradesInv.Add(HpUpgrades.S1);
-			if (lines[21] == "21")
+			if (lines[HP_UPGRADE_S2] == HP_UPGRADE_S2.ToString())
 				Save.HpUpgradesInv.Add(HpUpgrades.S2);
-			if (lines[22] == "22")
+			if (lines[HP_UPGRADE_S3] == HP_UPGRADE_S3.ToString())
 				Save.HpUpgradesInv.Add(HpUpgrades.S3);
-			if (lines[23] == "23")
+			if (lines[HP_UPGRADE_S4] == HP_UPGRADE_S4.ToString())
 				Save.HpUpgradesInv.Add(HpUpgrades.S4);
-			if (lines[24] == "24")
+			if (lines[HP_UPGRADE_S5] == HP_UPGRADE_S5.ToString())
 				Save.HpUpgradesInv.Add(HpUpgrades.S5);
 
 			//Inventory Mp upgrades
-			if (lines[40] == "40")
+			if (lines[MP_UPGRADE_S1] == MP_UPGRADE_S1.ToString())
 				Save.MpUpgradesInv.Add(MpUpgrades.S1);
-			if (lines[41] == "41")
+			if (lines[MP_UPGRADE_S2] == MP_UPGRADE_S2.ToString())
 				Save.MpUpgradesInv.Add(MpUpgrades.S2);
-			if (lines[42] == "42")
+			if (lines[MP_UPGRADE_S3] == MP_UPGRADE_S3.ToString())
 				Save.MpUpgradesInv.Add(MpUpgrades.S3);
-			if (lines[43] == "43")
+			if (lines[MP_UPGRADE_S4] == MP_UPGRADE_S4.ToString())
 				Save.MpUpgradesInv.Add(MpUpgrades.S4);
-			if (lines[44] == "44")
+			if (lines[MP_UPGRADE_S5] == MP_UPGRADE_S5.ToString())
 				Save.MpUpgradesInv.Add(MpUpgrades.S5);
 
 			//Inventory Knife upgrades
-			if (lines[60] == "60")
+			if (lines[KNIFE_UPGRADE_S1] == KNIFE_UPGRADE_S1.ToString())
 				Save.KnifeUpgradesInv.Add(KnifeUpgrades.S1);
-			if (lines[61] == "61")
+			if (lines[KNIFE_UPGRADE_S2] == KNIFE_UPGRADE_S2.ToString())
 				Save.KnifeUpgradesInv.Add(KnifeUpgrades.S2);
-			if (lines[62] == "62")
+			if (lines[KNIFE_UPGRADE_S3] == KNIFE_UPGRADE_S3.ToString())
 				Save.KnifeUpgradesInv.Add(KnifeUpgrades.S3);
-			if (lines[63] == "63")
+			if (lines[KNIFE_UPGRADE_S4] == KNIFE_UPGRADE_S4.ToString())
 				Save.KnifeUpgradesInv.Add(KnifeUpgrades.S4);
-			if (lines[64] == "64")
+			if (lines[KNIFE_UPGRADE_S5] == KNIFE_UPGRADE_S5.ToString())
 				Save.KnifeUpgradesInv.Add(KnifeUpgrades.S5);
 
 			//Inventory clock upgrades
-			if (lines[70] == "70")
+			if (lines[CLOCK_UPGRADE_S1] == CLOCK_UPGRADE_S1.ToString())
 				Save.ClockUpgradesInv.Add(ClockUpgrades.S1);
-			if (lines[71] == "71")
+			if (lines[CLOCK_UPGRADE_S2] == CLOCK_UPGRADE_S2.ToString())
 				Save.ClockUpgradesInv.Add(ClockUpgrades.S2);
-			if (lines[72] == "72")
+			if (lines[CLOCK_UPGRADE_S3] == CLOCK_UPGRADE_S3.ToString())
 				Save.ClockUpgradesInv.Add(ClockUpgrades.S3);
-			if (lines[73] == "73")
+			if (lines[CLOCK_UPGRADE_S4] == CLOCK_UPGRADE_S4.ToString())
 				Save.ClockUpgradesInv.Add(ClockUpgrades.S4);
-			if (lines[74] == "74")
+			if (lines[CLOCK_UPGRADE_S5] == CLOCK_UPGRADE_S5.ToString())
 				Save.ClockUpgradesInv.Add(ClockUpgrades.S5);
 
 			//Inventory Upgrades
-			if (lines[80] == "80")
+			if (lines[UPGRADES_SLIDE] == UPGRADES_SLIDE.ToString())
 				Save.Upgrades.Add(Upgrades.Slide);
-			if (lines[81] == "81")
+			if (lines[UPGRADES_DOUBLE] == UPGRADES_DOUBLE.ToString())
 				Save.Upgrades.Add(Upgrades.Double);
-			if (lines[82] == "82")
+			if (lines[UPGRADES_GRIP] == UPGRADES_GRIP.ToString())
 				Save.Upgrades.Add(Upgrades.Grip);
-			if (lines[83] == "83")
+			if (lines[UPGRADES_SCREW] == UPGRADES_SCREW.ToString())
 				Save.Upgrades.Add(Upgrades.Screw);
 
 			//Keys
-			if (lines[90] == "90")
+			if (lines[KEY_RED] == KEY_RED.ToString())
 				Save.Keys.Add(Keys.Red);
-			if (lines[91] == "91")
+			if (lines[KEY_YELLOW] == KEY_YELLOW.ToString())
 				Save.Keys.Add(Keys.Yellow);
-			if (lines[92] == "92")
+			if (lines[KEY_GREEN] == KEY_GREEN.ToString())
 				Save.Keys.Add(Keys.Green);
-			if (lines[93] == "93")
+			if (lines[KEY_BLUE] == KEY_BLUE.ToString())
 				Save.Keys.Add(Keys.Blue);
-			if (lines[94] == "94")
+			if (lines[KEY_PURPLE] == KEY_PURPLE.ToString())
 				Save.Keys.Add(Keys.Purple);
 
 			//Position in stage
-			int.TryParse(lines[100], out Save.PosX);
-			int.TryParse(lines[101], out Save.PosY);
-			Enum.TryParse(lines[102], out Save.Stage);
+			int.TryParse(lines[POS_X], out Save.PosX);
+			int.TryParse(lines[POS_Y], out Save.PosY);
+			Enum.TryParse(lines[STAGE], out Save.Stage);
 
 			//hp and mp upgrades
-			int.TryParse(lines[104], out Save.HpUpgrades);
-			int.TryParse(lines[105], out Save.MpUpgrades);
+			int.TryParse(lines[HP_UPGRADES], out Save.HpUpgrades);
+			int.TryParse(lines[MP_UPGRADES], out Save.MpUpgrades);
 
 			//xp
-			double.TryParse(lines[106], out Save.Exp);
+			double.TryParse(lines[EXP], out Save.Exp);
 
 			//File save date
-			Save.SaveDate = DateTime.ParseExact(lines[107], DateFormat, CultureInfo.CurrentCulture);
+			Save.SaveDate = DateTime.ParseExact(lines[SAVE_DATE], DATE_FORMAT, CultureInfo.CurrentCulture);
 
 			//Count of upgrades
-			int.TryParse(lines[108], out Save.KnifeUpgrades);
-			int.TryParse(lines[109], out Save.ClockUpgrades);
+			int.TryParse(lines[KNIFE_UPGRADES], out Save.KnifeUpgrades);
+			int.TryParse(lines[CLOCK_UPGRADES], out Save.ClockUpgrades);
 
 			//Gems
-			int.TryParse(lines[110], out Save.Amethyst);
-			int.TryParse(lines[111], out Save.Turquoise);
-			int.TryParse(lines[112], out Save.Topaz);
-			int.TryParse(lines[113], out Save.Ruby);
-			int.TryParse(lines[114], out Save.Sapphire);
-			int.TryParse(lines[115], out Save.Emerald);
-			int.TryParse(lines[116], out Save.Diamond);
+			int.TryParse(lines[AMETHYST], out Save.Amethyst);
+			int.TryParse(lines[TURQUOISE], out Save.Turquoise);
+			int.TryParse(lines[TOPAZ], out Save.Topaz);
+			int.TryParse(lines[RUBY], out Save.Ruby);
+			int.TryParse(lines[SAPPHIRE], out Save.Sapphire);
+			int.TryParse(lines[EMERALD], out Save.Emerald);
+			int.TryParse(lines[DIAMOND], out Save.Diamond);
 
 			//Upgrade level
-			Enum.TryParse(lines[117], out Save.UpgradeLevel);
+			Enum.TryParse(lines[UPGRADE_LEVEL], out Save.UpgradeLevel);
 
 			//Gold
-			int.TryParse(lines[118], out Save.Gold);
+			int.TryParse(lines[GOLD], out Save.Gold);
 
 			//TrashCans
 			//TODO: Do this when I figure out all the ids
-			var trashLines = lines[120].Split(',');
+			var trashLines = lines[TRASH_CANS].Split(',');
 			foreach (var l in trashLines)
 			{
 				if (Enum.TryParse(l, out TrashCans can))
@@ -155,23 +152,23 @@ namespace NightsSaveReader
 			}
 
 			//Bought Upgrades
-			int.TryParse(lines[134], out Save.ClockUpgradesBought);
-			int.TryParse(lines[135], out Save.KnifeUpgradesBought);
+			int.TryParse(lines[CLOCK_UPGRADES_BOUGHT], out Save.ClockUpgradesBought);
+			int.TryParse(lines[KNIFE_UPGRADES_BOUGHT], out Save.KnifeUpgradesBought);
 
 			//Gem Statues
-			if (lines[250] == "250")
+			if (lines[STATUE_AMETHYST] == STATUE_AMETHYST.ToString())
 				Save.Statues.Add(Statues.Amethyst);
-			if (lines[251] == "251")
+			if (lines[STATUE_TURQUOISE] == STATUE_TURQUOISE.ToString())
 				Save.Statues.Add(Statues.Turquoise);
-			if (lines[252] == "252")
+			if (lines[STATUE_TOPAZ] == STATUE_TOPAZ.ToString())
 				Save.Statues.Add(Statues.Topaz);
-			if (lines[253] == "253")
+			if (lines[STATUE_RUBY] == STATUE_RUBY.ToString())
 				Save.Statues.Add(Statues.Ruby);
-			if (lines[254] == "254")
+			if (lines[STATUE_SAPPHIRE] == STATUE_SAPPHIRE.ToString())
 				Save.Statues.Add(Statues.Sapphire);
-			if (lines[255] == "255")
+			if (lines[STATUE_EMERALD] == STATUE_EMERALD.ToString())
 				Save.Statues.Add(Statues.Emerald);
-			if (lines[256] == "256")
+			if (lines[STATUE_DIAMOND] == STATUE_DIAMOND.ToString())
 				Save.Statues.Add(Statues.Diamond);
 		}
 
@@ -186,206 +183,206 @@ namespace NightsSaveReader
 
 			//Inventory Hp upgrades
 			if (Save.HpUpgradesInv.Contains(HpUpgrades.S1))
-				lines[20] = "20";
+				lines[HP_UPGRADE_S1] = HP_UPGRADE_S1.ToString();
 			else
-				lines[20] = "0";
+				lines[HP_UPGRADE_S1] = ZERO.ToString();
 			if (Save.HpUpgradesInv.Contains(HpUpgrades.S2))
-				lines[21] = "21";
+				lines[HP_UPGRADE_S2] = HP_UPGRADE_S2.ToString();
 			else
-				lines[21] = "0";
+				lines[HP_UPGRADE_S2] = ZERO.ToString();
 			if (Save.HpUpgradesInv.Contains(HpUpgrades.S3))
-				lines[22] = "22";
+				lines[HP_UPGRADE_S3] = HP_UPGRADE_S3.ToString();
 			else
-				lines[22] = "0";
+				lines[HP_UPGRADE_S3] = ZERO.ToString();
 			if (Save.HpUpgradesInv.Contains(HpUpgrades.S4))
-				lines[23] = "23";
+				lines[HP_UPGRADE_S4] = HP_UPGRADE_S4.ToString();
 			else
-				lines[23] = "0";
+				lines[HP_UPGRADE_S4] = ZERO.ToString();
 			if (Save.HpUpgradesInv.Contains(HpUpgrades.S5))
-				lines[24] = "24";
+				lines[HP_UPGRADE_S5] = HP_UPGRADE_S5.ToString();
 			else
-				lines[24] = "0";
+				lines[HP_UPGRADE_S5] = ZERO.ToString();
 
 			//Inventory Mp upgrades
 			if (Save.MpUpgradesInv.Contains(MpUpgrades.S1))
-				lines[40] = "40";
+				lines[MP_UPGRADE_S1] = MP_UPGRADE_S1.ToString();
 			else
-				lines[40] = "0";
+				lines[MP_UPGRADE_S1] = ZERO.ToString();
 			if (Save.MpUpgradesInv.Contains(MpUpgrades.S2))
-				lines[41] = "41";
+				lines[MP_UPGRADE_S2] = MP_UPGRADE_S2.ToString();
 			else
-				lines[41] = "0";
+				lines[MP_UPGRADE_S2] = ZERO.ToString();
 			if (Save.MpUpgradesInv.Contains(MpUpgrades.S3))
-				lines[42] = "42";
+				lines[MP_UPGRADE_S3] = MP_UPGRADE_S3.ToString();
 			else
-				lines[42] = "0";
+				lines[MP_UPGRADE_S3] = ZERO.ToString();
 			if (Save.MpUpgradesInv.Contains(MpUpgrades.S4))
-				lines[43] = "43";
+				lines[MP_UPGRADE_S4] = MP_UPGRADE_S4.ToString();
 			else
-				lines[43] = "0";
+				lines[MP_UPGRADE_S4] = ZERO.ToString();
 			if (Save.MpUpgradesInv.Contains(MpUpgrades.S5))
-				lines[44] = "44";
+				lines[MP_UPGRADE_S5] = MP_UPGRADE_S5.ToString();
 			else
-				lines[44] = "0";
+				lines[MP_UPGRADE_S5] = ZERO.ToString();
 
 			//Inventory knife upgrades
 			if (Save.KnifeUpgradesInv.Contains(KnifeUpgrades.S1))
-				lines[60] = "60";
+				lines[KNIFE_UPGRADE_S1] = KNIFE_UPGRADE_S1.ToString();
 			else
-				lines[60] = "0";
+				lines[KNIFE_UPGRADE_S1] = ZERO.ToString();
 			if (Save.KnifeUpgradesInv.Contains(KnifeUpgrades.S2))
-				lines[61] = "61";
+				lines[KNIFE_UPGRADE_S2] = KNIFE_UPGRADE_S2.ToString();
 			else
-				lines[61] = "0";
+				lines[KNIFE_UPGRADE_S2] = ZERO.ToString();
 			if (Save.KnifeUpgradesInv.Contains(KnifeUpgrades.S3))
-				lines[62] = "62";
+				lines[KNIFE_UPGRADE_S3] = KNIFE_UPGRADE_S3.ToString();
 			else
-				lines[62] = "0";
+				lines[KNIFE_UPGRADE_S3] = ZERO.ToString();
 			if (Save.KnifeUpgradesInv.Contains(KnifeUpgrades.S4))
-				lines[63] = "63";
+				lines[KNIFE_UPGRADE_S4] = KNIFE_UPGRADE_S4.ToString();
 			else
-				lines[63] = "0";
+				lines[KNIFE_UPGRADE_S4] = ZERO.ToString();
 			if (Save.KnifeUpgradesInv.Contains(KnifeUpgrades.S5))
-				lines[64] = "64";
+				lines[KNIFE_UPGRADE_S5] = KNIFE_UPGRADE_S5.ToString();
 			else
-				lines[64] = "0";
+				lines[KNIFE_UPGRADE_S5] = ZERO.ToString();
 
 			//Inventory clock upgrades
 			if (Save.ClockUpgradesInv.Contains(ClockUpgrades.S1))
-				lines[70] = "70";
+				lines[CLOCK_UPGRADE_S1] = CLOCK_UPGRADE_S1.ToString();
 			else
-				lines[70] = "0";
+				lines[CLOCK_UPGRADE_S1] = ZERO.ToString();
 			if (Save.ClockUpgradesInv.Contains(ClockUpgrades.S2))
-				lines[71] = "71";
+				lines[CLOCK_UPGRADE_S2] = CLOCK_UPGRADE_S2.ToString();
 			else
-				lines[71] = "0";
+				lines[CLOCK_UPGRADE_S2] = ZERO.ToString();
 			if (Save.ClockUpgradesInv.Contains(ClockUpgrades.S3))
-				lines[72] = "72";
+				lines[CLOCK_UPGRADE_S3] = CLOCK_UPGRADE_S3.ToString();
 			else
-				lines[72] = "0";
+				lines[CLOCK_UPGRADE_S3] = ZERO.ToString();
 			if (Save.ClockUpgradesInv.Contains(ClockUpgrades.S4))
-				lines[73] = "73";
+				lines[CLOCK_UPGRADE_S4] = CLOCK_UPGRADE_S4.ToString();
 			else
-				lines[73] = "0";
+				lines[CLOCK_UPGRADE_S4] = ZERO.ToString();
 			if (Save.ClockUpgradesInv.Contains(ClockUpgrades.S5))
-				lines[74] = "74";
+				lines[CLOCK_UPGRADE_S5] = CLOCK_UPGRADE_S5.ToString();
 			else
-				lines[74] = "0";
+				lines[CLOCK_UPGRADE_S5] = ZERO.ToString();
 
 			//Inventory Upgrades
 			if (Save.Upgrades.Contains(Upgrades.Slide))
-				lines[80] = "80";
+				lines[UPGRADES_SLIDE] = UPGRADES_SLIDE.ToString();
 			else
-				lines[80] = "0";
+				lines[UPGRADES_SLIDE] = ZERO.ToString();
 			if (Save.Upgrades.Contains(Upgrades.Double))
-				lines[81] = "81";
+				lines[UPGRADES_DOUBLE] = UPGRADES_DOUBLE.ToString();
 			else
-				lines[81] = "0";
+				lines[UPGRADES_DOUBLE] = ZERO.ToString();
 			if (Save.Upgrades.Contains(Upgrades.Grip))
-				lines[82] = "82";
+				lines[UPGRADES_GRIP] = UPGRADES_GRIP.ToString();
 			else
-				lines[82] = "0";
+				lines[UPGRADES_GRIP] = ZERO.ToString();
 			if (Save.Upgrades.Contains(Upgrades.Screw))
-				lines[83] = "83";
+				lines[UPGRADES_SCREW] = UPGRADES_SCREW.ToString();
 			else
-				lines[83] = "0";
+				lines[UPGRADES_SCREW] = ZERO.ToString();
 
 			//Keys
 			if(Save.Keys.Contains(Keys.Red))
-				lines[90] = "90";
+				lines[KEY_RED] = KEY_RED.ToString();
 			else
-				lines[90] = "0";
+				lines[KEY_RED] = ZERO.ToString();
 			if (Save.Keys.Contains(Keys.Yellow))
-				lines[91] = "91";
+				lines[KEY_YELLOW] = KEY_YELLOW.ToString();
 			else
-				lines[91] = "0";
+				lines[KEY_YELLOW] = ZERO.ToString();
 			if (Save.Keys.Contains(Keys.Green))
-				lines[92] = "92";
+				lines[KEY_GREEN] = KEY_GREEN.ToString();
 			else
-				lines[92] = "0";
+				lines[KEY_GREEN] = ZERO.ToString();
 			if (Save.Keys.Contains(Keys.Blue))
-				lines[93] = "93";
+				lines[KEY_BLUE] = KEY_BLUE.ToString();
 			else
-				lines[93] = "0";
+				lines[KEY_BLUE] = ZERO.ToString();
 			if (Save.Keys.Contains(Keys.Purple))
-				lines[94] = "94";
+				lines[KEY_PURPLE] = KEY_PURPLE.ToString();
 			else
-				lines[94] = "0";
+				lines[KEY_PURPLE] = ZERO.ToString();
 
 			//Position in stage
-			lines[100] = Save.PosX.ToString();
-			lines[101] = Save.PosY.ToString();
-			lines[102] = ((int)Save.Stage).ToString();
+			lines[POS_X] = Save.PosX.ToString();
+			lines[POS_Y] = Save.PosY.ToString();
+			lines[STAGE] = ((int)Save.Stage).ToString();
 
 			//hp and mp upgrades
-			lines[104] = Save.HpUpgrades.ToString();
-			lines[105] = Save.MpUpgrades.ToString();
+			lines[HP_UPGRADES] = Save.HpUpgrades.ToString();
+			lines[MP_UPGRADES] = Save.MpUpgrades.ToString();
 
 			//xp
-			lines[106] = Save.Exp.ToString();
+			lines[EXP] = Save.Exp.ToString();
 
 			//File save date
 			if(useNowDate)
-				lines[107] = DateTime.Now.ToString(DateFormat, CultureInfo.CurrentCulture);
+				lines[SAVE_DATE] = DateTime.Now.ToString(DATE_FORMAT, CultureInfo.CurrentCulture);
 			else
-				lines[107] = Save.SaveDate.ToString(DateFormat, CultureInfo.CurrentCulture);
+				lines[SAVE_DATE] = Save.SaveDate.ToString(DATE_FORMAT, CultureInfo.CurrentCulture);
 
 			//Count of upgrades
-			lines[108] = Save.KnifeUpgrades.ToString();
-			lines[109] = Save.ClockUpgrades.ToString();
+			lines[KNIFE_UPGRADES] = Save.KnifeUpgrades.ToString();
+			lines[CLOCK_UPGRADES] = Save.ClockUpgrades.ToString();
 
 			//Gems
-			lines[110] = Save.Amethyst.ToString();
-			lines[111] = Save.Turquoise.ToString();
-			lines[112] = Save.Topaz.ToString();
-			lines[113] = Save.Ruby.ToString();
-			lines[114] = Save.Sapphire.ToString();
-			lines[115] = Save.Emerald.ToString();
-			lines[116] = Save.Diamond.ToString();
+			lines[AMETHYST] = Save.Amethyst.ToString();
+			lines[TURQUOISE] = Save.Turquoise.ToString();
+			lines[TOPAZ] = Save.Topaz.ToString();
+			lines[RUBY] = Save.Ruby.ToString();
+			lines[SAPPHIRE] = Save.Sapphire.ToString();
+			lines[EMERALD] = Save.Emerald.ToString();
+			lines[DIAMOND] = Save.Diamond.ToString();
 
 			//Upgrade level
-			lines[117] = ((int)Save.UpgradeLevel).ToString();
+			lines[UPGRADE_LEVEL] = ((int)Save.UpgradeLevel).ToString();
 
 			//Gold
-			lines[118] = Save.Gold.ToString();
+			lines[GOLD] = Save.Gold.ToString();
 
 			//TrashCans
 			var cans = Save.TrashCans.Select(x => ((int)x).ToString());
-			lines[120] = $"{(cans.Count() == 0 ? "0" : $"{string.Join(",", cans)},")}";
+			lines[TRASH_CANS] = $"{(cans.Count() == 0 ? ZERO.ToString() : $"{string.Join(",", cans)},")}";
 
 			//Bought Upgrades
-			lines[134] = Save.ClockUpgradesBought.ToString();
-			lines[135] = Save.KnifeUpgradesBought.ToString();
+			lines[CLOCK_UPGRADES_BOUGHT] = Save.ClockUpgradesBought.ToString();
+			lines[KNIFE_UPGRADES_BOUGHT] = Save.KnifeUpgradesBought.ToString();
 
 			//Gem Statues
 			if (Save.Statues.Contains(Statues.Amethyst))
-				lines[250] = "250";
+				lines[STATUE_AMETHYST] = STATUE_AMETHYST.ToString();
 			else
-				lines[250] = "0";
+				lines[STATUE_AMETHYST] = ZERO.ToString();
 			if (Save.Statues.Contains(Statues.Turquoise))
-				lines[251] = "251";
+				lines[STATUE_TURQUOISE] = STATUE_TURQUOISE.ToString();
 			else
-				lines[251] = "0";
+				lines[STATUE_TURQUOISE] = ZERO.ToString();
 			if (Save.Statues.Contains(Statues.Topaz))
-				lines[252] = "252";
+				lines[STATUE_TOPAZ] = STATUE_TOPAZ.ToString();
 			else
-				lines[252] = "0";
+				lines[STATUE_TOPAZ] = ZERO.ToString();
 			if (Save.Statues.Contains(Statues.Ruby))
-				lines[253] = "253";
+				lines[STATUE_RUBY] = STATUE_RUBY.ToString();
 			else
-				lines[253] = "0";
+				lines[STATUE_RUBY] = ZERO.ToString();
 			if (Save.Statues.Contains(Statues.Sapphire))
-				lines[254] = "254";
+				lines[STATUE_SAPPHIRE] = STATUE_SAPPHIRE.ToString();
 			else
-				lines[254] = "0";
+				lines[STATUE_SAPPHIRE] = ZERO.ToString();
 			if (Save.Statues.Contains(Statues.Emerald))
-				lines[255] = "255";
+				lines[STATUE_EMERALD] = STATUE_EMERALD.ToString();
 			else
-				lines[255] = "0";
+				lines[STATUE_EMERALD] = ZERO.ToString();
 			if (Save.Statues.Contains(Statues.Diamond))
-				lines[256] = "256";
+				lines[STATUE_DIAMOND] = STATUE_DIAMOND.ToString();
 			else
-				lines[256] = "0";
+				lines[STATUE_DIAMOND] = ZERO.ToString();
 
 			await WriteLines(_currentPath, lines.ToArray());
 		}
@@ -398,14 +395,14 @@ namespace NightsSaveReader
 		public async Task CreateSave(string path)
 		{
 			_currentPath = path;
-			var lines = new string[_lineCount];
-			for(var i = 0; i < _lineCount; ++i)
+			var lines = new string[LINE_COUNT];
+			for(var i = 0; i < LINE_COUNT; ++i)
 			{
-				lines[i] = "0";
+				lines[i] = ZERO.ToString();
 			}
-			lines[102] = ((int)Stage.Opening).ToString();
+			lines[STAGE] = ((int)Stage.Opening).ToString();
 			byte[] bytes = null;
-			for (var i = 0; i < _lineCount; ++i)
+			for (var i = 0; i < LINE_COUNT; ++i)
 			{
 				bytes = Encoding.UTF8.GetBytes(lines[i]);
 				lines[i] = Convert.ToBase64String(bytes, 0, bytes.Length, Base64FormattingOptions.None);
@@ -437,7 +434,7 @@ namespace NightsSaveReader
 		{
 			using (var writer = new StreamWriter(path))
 			{
-				for (var i = 0; i < _lineCount; ++i)
+				for (var i = 0; i < LINE_COUNT; ++i)
 				{
 					await writer.WriteLineAsync(Convert.ToBase64String(Encoding.UTF8.GetBytes(lines[i]), Base64FormattingOptions.None));
 				}

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,7 +7,6 @@ namespace NightsSaveReader
 {
 	public static class SaveHelpers
 	{
-
 		public static StageDisplay StageToStageDisplay(Stage s)
 		{
 			switch (s)
@@ -114,6 +114,22 @@ namespace NightsSaveReader
 				default:
 					return KnifeUpgrades.S1;
 			}
+		}
+
+		public static bool TryParseJsonProperty<T>(this JObject obj, string propertyName, out T val)
+		{
+			val = default(T);
+			try
+			{
+				if (obj.TryGetValue(propertyName, out var jval))
+				{
+					val = jval.ToObject<T>();
+					return true;
+				}
+			}
+			catch { return false; }
+
+			return false;
 		}
 	}
 }
