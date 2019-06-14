@@ -40,3 +40,4 @@ Temporary Items
 #other
 *.pubxml
 /*.PublishSettings
+Release/
