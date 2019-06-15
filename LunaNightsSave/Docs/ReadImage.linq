@@ -7,10 +7,13 @@ static List<FileDef> images = new List<FileDef>()
 
 void Main()
 {
-	ReadFile();
+	foreach(var d in images)
+	{
+		ReadFile(d, );
+	}
 }
 
-public void ReadFiles(FileDef image)
+public async Task void ReadFiles(FileDef image, string outDirectory)
 {
 	var file = "G:\\Steam\\SteamApps\\common\\Touhou Luna Nights\\data.win";
 	//Sprite Atlas

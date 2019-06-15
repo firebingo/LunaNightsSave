@@ -93,6 +93,8 @@ namespace NightsSaveReader
 					UPGRADES_GRIP = i;
 				if (lines.TryParseJsonProperty("upgradesScrew", out i))
 					UPGRADES_SCREW = i;
+				if (lines.TryParseJsonProperty("upgradesDash", out i))
+					UPGRADES_DASH = i;
 
 				if (lines.TryParseJsonProperty("keyRed", out i))
 					KEY_RED = i;
@@ -104,6 +106,8 @@ namespace NightsSaveReader
 					KEY_BLUE = i;
 				if (lines.TryParseJsonProperty("keyPurple", out i))
 					KEY_PURPLE = i;
+				if (lines.TryParseJsonProperty("iceMagatama", out i))
+					ICE_MAGATAMA = i;
 
 				if (lines.TryParseJsonProperty("posX", out i))
 					POS_X = i;
@@ -209,12 +213,14 @@ namespace NightsSaveReader
 		public static readonly int UPGRADES_DOUBLE = 81;
 		public static readonly int UPGRADES_GRIP = 82;
 		public static readonly int UPGRADES_SCREW = 83;
+		public static readonly int UPGRADES_DASH = 84;
 
 		public static readonly int KEY_RED = 90;
 		public static readonly int KEY_YELLOW = 91;
 		public static readonly int KEY_GREEN = 92;
 		public static readonly int KEY_BLUE = 93;
 		public static readonly int KEY_PURPLE = 94;
+		public static readonly int ICE_MAGATAMA = 95;
 
 		public static readonly int POS_X = 100;
 		public static readonly int POS_Y = 101;

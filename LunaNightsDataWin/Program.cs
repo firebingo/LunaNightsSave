@@ -47,7 +47,7 @@ namespace LunaNightsDataWin
 			_inFile = inFile;
 			_outDir = outDir;
 			if (File.Exists("AppData\\PngLocations.json"))
-				_images = JsonConvert.DeserializeObject<List<FileDef>>(File.ReadAllText("PngLocations.json"));
+				_images = JsonConvert.DeserializeObject<List<FileDef>>(File.ReadAllText("AppData\\PngLocations.json"));
 			else
 			{
 				Console.WriteLine("Finding Pngs in data.win");

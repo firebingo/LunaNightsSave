@@ -95,6 +95,8 @@ namespace NightsSaveReader
 				Save.Upgrades.Add(Upgrades.Grip);
 			if (lines[UPGRADES_SCREW] == UPGRADES_SCREW.ToString())
 				Save.Upgrades.Add(Upgrades.Screw);
+			if (lines[UPGRADES_DASH] == UPGRADES_DASH.ToString())
+				Save.Upgrades.Add(Upgrades.Dash);
 
 			//Keys
 			if (lines[KEY_RED] == KEY_RED.ToString())
@@ -107,6 +109,8 @@ namespace NightsSaveReader
 				Save.Keys.Add(Keys.Blue);
 			if (lines[KEY_PURPLE] == KEY_PURPLE.ToString())
 				Save.Keys.Add(Keys.Purple);
+			if (lines[ICE_MAGATAMA] == ICE_MAGATAMA.ToString())
+				Save.Keys.Add(Keys.IceMagatama);
 
 			//Position in stage
 			int.TryParse(lines[POS_X], out Save.PosX);
@@ -286,9 +290,13 @@ namespace NightsSaveReader
 				lines[UPGRADES_SCREW] = UPGRADES_SCREW.ToString();
 			else
 				lines[UPGRADES_SCREW] = ZERO.ToString();
+			if (Save.Upgrades.Contains(Upgrades.Dash))
+				lines[UPGRADES_DASH] = UPGRADES_DASH.ToString();
+			else
+				lines[UPGRADES_DASH] = ZERO.ToString();
 
 			//Keys
-			if(Save.Keys.Contains(Keys.Red))
+			if (Save.Keys.Contains(Keys.Red))
 				lines[KEY_RED] = KEY_RED.ToString();
 			else
 				lines[KEY_RED] = ZERO.ToString();
@@ -307,7 +315,11 @@ namespace NightsSaveReader
 			if (Save.Keys.Contains(Keys.Purple))
 				lines[KEY_PURPLE] = KEY_PURPLE.ToString();
 			else
-				lines[KEY_PURPLE] = ZERO.ToString();
+				lines[ICE_MAGATAMA] = ZERO.ToString();
+			if (Save.Keys.Contains(Keys.IceMagatama))
+				lines[ICE_MAGATAMA] = ICE_MAGATAMA.ToString();
+			else
+				lines[ICE_MAGATAMA] = ZERO.ToString();
 
 			//Position in stage
 			lines[POS_X] = Save.PosX.ToString();

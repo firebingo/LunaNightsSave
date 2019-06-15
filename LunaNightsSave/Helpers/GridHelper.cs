@@ -150,6 +150,10 @@ namespace LunaNightsSave.Helpers
 									if (!BingoImages.ContainsKey("KeyPurple"))
 										BingoImages.Add("KeyPurple", new BitmapImage(new Uri("pack://application:,,,/AppData/Images/BingoKeyPurple.png")));
 									return BingoImages["KeyPurple"];
+								case (int)Keys.IceMagatama:
+									if (!BingoImages.ContainsKey("KeyIce"))
+										BingoImages.Add("KeyIce", new BitmapImage(new Uri("pack://application:,,,/AppData/Images/BingoIce.png")));
+									return BingoImages["KeyIce"];
 							}
 							break;
 						}
@@ -208,6 +212,10 @@ namespace LunaNightsSave.Helpers
 									if (!BingoImages.ContainsKey("UScrew"))
 										BingoImages.Add("UScrew", new BitmapImage(new Uri("pack://application:,,,/AppData/Images/BingoScrew.png")));
 									return BingoImages["UScrew"];
+								case (int)Upgrades.Dash:
+									if (!BingoImages.ContainsKey("UDash"))
+										BingoImages.Add("UDash", new BitmapImage(new Uri("pack://application:,,,/AppData/Images/BingoDash.png")));
+									return BingoImages["UDash"];
 							}
 							break;
 						}

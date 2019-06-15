@@ -25,7 +25,9 @@ namespace NightsSaveReader
 		Stage4 = 8,
 		Stage5 = 9,
 		StageExtra = 10,
-		Credits = 11
+		BossRush = 11,
+		ToBeContinued = 12,
+		Credits = 13
 	}
 
 	public enum StageDisplay
@@ -41,10 +43,11 @@ namespace NightsSaveReader
 		Stage4 = 4,
 		Stage5 = 5,
 		StageExtra = 6,
-		Credits = 7
+		BossRush = 7,
+		ToBeContinued = 8,
+		Credits = 9
 	}
 
-	//TODO: Get the actual numbers for these
 	public enum TrashCans
 	{
 		S1_1 = 100221,
@@ -117,7 +120,8 @@ namespace NightsSaveReader
 		Yellow = 1,
 		Green = 2,
 		Blue = 3,
-		Purple = 4
+		Purple = 4,
+		IceMagatama = 5
 	}
 
 	public enum Upgrades
@@ -125,7 +129,8 @@ namespace NightsSaveReader
 		Slide = 0,
 		Double = 1,
 		Grip = 2,
-		Screw = 3
+		Screw = 3,
+		Dash = 4
 	}
 
 	public class LunaNightsSave

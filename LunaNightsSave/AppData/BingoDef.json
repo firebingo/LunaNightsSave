@@ -355,7 +355,7 @@
 				"Type": "Skill",
 				"Stage": -1,
 				"Data": -1,
-				"Hidden": true,
+				"Hidden": false,
 				"Enabled": false
 			}
 		],
@@ -398,9 +398,9 @@
 			{
 				"Type": "Key",
 				"Stage": -1,
-				"Data": -1,
-				"Hidden": true,
-				"Enabled": false
+				"Data": 5,
+				"Hidden": false,
+				"Enabled": true
 			},
 			{
 				"Type": "Key",
@@ -442,9 +442,9 @@
 			{
 				"Type": "Upgrade",
 				"Stage": -1,
-				"Data": -1,
-				"Hidden": true,
-				"Enabled": false
+				"Data": 4,
+				"Hidden": false,
+				"Enabled": true
 			},
 			{
 				"Type": "Upgrade",

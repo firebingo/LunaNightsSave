@@ -33,6 +33,10 @@ namespace NightsSaveReader
 					return StageDisplay.Stage5;
 				case Stage.StageExtra:
 					return StageDisplay.StageExtra;
+				case Stage.BossRush:
+					return StageDisplay.BossRush;
+				case Stage.ToBeContinued:
+					return StageDisplay.ToBeContinued;
 				case Stage.Credits:
 					return StageDisplay.Credits;
 				default:

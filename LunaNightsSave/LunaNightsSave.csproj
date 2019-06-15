@@ -193,6 +193,11 @@
     <Resource Include="AppData\Images\BingoGemEmerald.png" />
     <Resource Include="AppData\Images\BingoGemSapphire.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="AppData\Images\BingoDash.png" />
+    <Resource Include="AppData\Images\BingoIce.png" />
+    <Resource Include="AppData\Images\BingoSkillBound.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

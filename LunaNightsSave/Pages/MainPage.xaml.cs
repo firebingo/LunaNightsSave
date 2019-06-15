@@ -456,6 +456,7 @@ namespace LunaNightsSave.Pages
 				case (int)Upgrades.Double:
 				case (int)Upgrades.Grip:
 				case (int)Upgrades.Screw:
+				case (int)Upgrades.Dash:
 					if (PageModel.SaveInfo.Upgrades.Contains(u))
 					{
 						foreach (var c in UpgradeGridControls)
