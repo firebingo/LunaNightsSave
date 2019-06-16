@@ -9,7 +9,8 @@ namespace NightsSaveReader
 		Slide,
 		Double,
 		Grip,
-		Screw
+		Screw,
+		Dash
 	}
 
 	public enum Stage

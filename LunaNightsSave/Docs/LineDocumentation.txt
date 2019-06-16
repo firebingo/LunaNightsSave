@@ -239,7 +239,7 @@ Number of knife upgrades bought, not tied to 109
 0
 0
 0
-0
+Whether you have dash or not, value = 1 (Used for ng+)
 0
 0
 0

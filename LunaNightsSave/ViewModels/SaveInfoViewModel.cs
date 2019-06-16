@@ -394,6 +394,8 @@ namespace LunaNightsSave.ViewModels
 						save.UpgradeLevel = UpgradeLevel.Grip;
 					if (save.Upgrades.Contains(NightsSaveReader.Upgrades.Screw))
 						save.UpgradeLevel = UpgradeLevel.Screw;
+					if (save.Upgrades.Contains(NightsSaveReader.Upgrades.Dash))
+						save.UpgradeLevel = UpgradeLevel.Dash;
 
 					save.Keys.Clear();
 					foreach (var k in Keys)
