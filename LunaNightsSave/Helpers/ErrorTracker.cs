@@ -1,4 +1,6 @@
-﻿namespace LunaNightsSave.Helpers
+﻿using System.Threading.Tasks;
+
+namespace LunaNightsSave.Helpers
 {
 	public static class ErrorTracker
 	{
@@ -20,6 +22,13 @@
 				_currentError = value;
 				UpdateError?.Invoke(_currentError);
 			}
+		}
+
+		public static async Task DelayClearError(string msg, int ms)
+		{
+			await Task.Delay(ms);
+			if (CurrentError == msg)
+				CurrentError = string.Empty;
 		}
 	}
 }

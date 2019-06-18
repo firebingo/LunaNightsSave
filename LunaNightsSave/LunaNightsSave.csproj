@@ -44,8 +44,14 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Ookii.Dialogs.Wpf, Version=1.0.0.0, Culture=neutral, PublicKeyToken=66aa232afad40158, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ookii.Dialogs.Wpf.1.1.0\lib\net45\Ookii.Dialogs.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -92,6 +98,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Function\Config.cs" />
+    <Compile Include="Function\ImagePacker.cs" />
     <Compile Include="Helpers\ErrorTracker.cs" />
     <Compile Include="Helpers\GridHelper.cs" />
     <Compile Include="Helpers\WindowPlacementHandler.cs" />
@@ -139,6 +146,9 @@
     <None Include="AppData\Config.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="AppData\PngLocations.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="AppData\SaveLines.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -154,6 +164,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LunaNightsDataWin\LunaNightsDataWin.csproj">
+      <Project>{48fd0d9f-a65d-4999-a9e0-6df6a677bfeb}</Project>
+      <Name>LunaNightsDataWin</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NightsSaveReader\NightsSaveReader.csproj">
       <Project>{bb00722d-f900-4f7e-85f8-eb98f07f0774}</Project>
       <Name>NightsSaveReader</Name>

@@ -1,7 +1,11 @@
-﻿using LunaNightsSave.Function;
+﻿using LunaNightsDataWin;
+using LunaNightsSave.Function;
 using LunaNightsSave.Helpers;
 using LunaNightsSave.ViewModels;
+using Microsoft.Win32;
+using Newtonsoft.Json;
 using NightsSaveReader;
+using Ookii.Dialogs.Wpf;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,6 +30,7 @@ namespace LunaNightsSave.Pages
 	public partial class MainPage : Page
 	{
 		private SaveEditor _saveEditor;
+		private ImagePacker _imagePacker;
 		private List<Control> UpgradeGridControls = new List<Control>();
 		private readonly SynchronizationContext _syncContext;
 		private string _loadPath = string.Empty;
@@ -56,6 +61,7 @@ namespace LunaNightsSave.Pages
 			_save2Path = Path.Combine(_loadPath, "game2.sav");
 
 			_saveEditor = new SaveEditor();
+			_imagePacker = new ImagePacker(_syncContext);
 
 			ErrorTracker.UpdateError += ErrorTrackerUpdateError;
 
@@ -519,6 +525,85 @@ namespace LunaNightsSave.Pages
 		private void SaveButtonClicked(object sender, RoutedEventArgs e)
 		{
 			Task.Run(() => SyncViewModelToSave(true));
+		}
+
+		private void UnpackImagesClicked(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				var inFile = string.Empty;
+				var outDir = string.Empty;
+				OpenFileDialog inFileDiag = new OpenFileDialog
+				{
+					Title = "Select Luna Nights data.win file",
+					DefaultExt = "win",
+					Filter = "Data.win (*.win)|*.win",
+					Multiselect = false
+				};
+				if (inFileDiag.ShowDialog() == true)
+					inFile = inFileDiag.FileName;
+
+				if (string.IsNullOrWhiteSpace(inFile))
+					return;
+
+				VistaFolderBrowserDialog outDirDiag = new VistaFolderBrowserDialog()
+				{
+					UseDescriptionForTitle = true,
+					Description = "Select output folder for images"
+				};
+				if (outDirDiag.ShowDialog() == true)
+					outDir = outDirDiag.SelectedPath;
+
+				if (string.IsNullOrWhiteSpace(inFile) || string.IsNullOrWhiteSpace(outDir))
+					return;
+
+				Task.Run(() => _imagePacker.UnpackImagesFromData(inFile, outDir));
+			}
+			catch (Exception ex)
+			{
+				_syncContext.Post((s) => ErrorTracker.CurrentError = ex.Message, null);
+			}
+		}
+
+		private void PackImagesClicked(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				string[] files = null;
+				string outFile = string.Empty;
+				OpenFileDialog inFileDiag = new OpenFileDialog
+				{
+					Title = "Select PNG images to pack",
+					DefaultExt = "png",
+					Filter = "PNG Image (*.png)|*.png",
+					Multiselect = true
+				};
+
+				if (inFileDiag.ShowDialog() == true)
+					files = inFileDiag.FileNames;
+
+				if (files == null || files.Length == 0)
+					return;
+
+				OpenFileDialog outFileDiag = new OpenFileDialog
+				{
+					Title = "Select Luna Nights data.win file",
+					DefaultExt = "win",
+					Filter = "Data.win (*.win)|*.win",
+					Multiselect = false
+				};
+				if (outFileDiag.ShowDialog() == true)
+					outFile = outFileDiag.FileName;
+
+				if (string.IsNullOrWhiteSpace(outFile) || files == null || files.Length == 0)
+					return;
+
+				Task.Run(() => _imagePacker.PackImagesIntoData(files, outFile));
+			}
+			catch(Exception ex)
+			{
+				_syncContext.Post((s) => ErrorTracker.CurrentError = ex.Message, null);
+			}
 		}
 	}
 }
