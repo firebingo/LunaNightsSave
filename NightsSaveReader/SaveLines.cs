@@ -46,33 +46,33 @@ namespace NightsSaveReader
 				if (lines.TryParseJsonProperty("hpUpgradeS2", out i))
 					HP_UPGRADE_S2 = i;
 				if (lines.TryParseJsonProperty("hpUpgradeS3", out i))
-					HP_UPGRADE_S1 = i;
+					HP_UPGRADE_S3 = i;
 				if (lines.TryParseJsonProperty("hpUpgradeS4", out i))
-					HP_UPGRADE_S1 = i;
+					HP_UPGRADE_S4 = i;
 				if (lines.TryParseJsonProperty("hpUpgradeS5", out i))
-					HP_UPGRADE_S1 = i;
+					HP_UPGRADE_S5 = i;
 
 				if (lines.TryParseJsonProperty("mpUpgradeS1", out i))
 					MP_UPGRADE_S1 = i;
 				if (lines.TryParseJsonProperty("mpUpgradeS2", out i))
 					MP_UPGRADE_S2 = i;
 				if (lines.TryParseJsonProperty("mpUpgradeS3", out i))
-					MP_UPGRADE_S1 = i;
+					MP_UPGRADE_S3 = i;
 				if (lines.TryParseJsonProperty("mpUpgradeS4", out i))
-					MP_UPGRADE_S1 = i;
+					MP_UPGRADE_S4 = i;
 				if (lines.TryParseJsonProperty("mpUpgradeS5", out i))
-					MP_UPGRADE_S1 = i;
+					MP_UPGRADE_S5 = i;
 
 				if (lines.TryParseJsonProperty("knifeUpgradeS1", out i))
 					KNIFE_UPGRADE_S1 = i;
 				if (lines.TryParseJsonProperty("knifeUpgradeS2", out i))
 					KNIFE_UPGRADE_S2 = i;
 				if (lines.TryParseJsonProperty("knifeUpgradeS3", out i))
-					KNIFE_UPGRADE_S1 = i;
+					KNIFE_UPGRADE_S3 = i;
 				if (lines.TryParseJsonProperty("knifeUpgradeS4", out i))
-					KNIFE_UPGRADE_S1 = i;
+					KNIFE_UPGRADE_S4 = i;
 				if (lines.TryParseJsonProperty("knifeUpgradeS5", out i))
-					KNIFE_UPGRADE_S1 = i;
+					KNIFE_UPGRADE_S5 = i;
 
 				if (lines.TryParseJsonProperty("clockUpgradeS1", out i))
 					CLOCK_UPGRADE_S1 = i;
